@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Thunderbolt Weather</title>
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5E4JR7ga90CBm48krqqXd26CBFOuXxlA&libraries=places"></script>
+<script type="text/javascript" src="js/search.js"></script>
+<script type="text/javascript" src="js/getLocation.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<i class="fas fa-bolt fa-lg" id="logo"></i>
+	<h2 id="logolbl">Thunderbolt Weather</h2>
+	<header>
+		<div id="locbox">
+			<i class="fas fa-location-arrow fa-lg" id="location" onclick="getLocation()"></i>
+		</div>
+		<div id="searchbox">
+			<input id="autocomplete" placeholder="Enter a city" type="text">
+			<i class="fas fa-search" id="search"></i>
+		</div>
+		<i class="fas fa-heart fa-lg" id="favorites"></i>
+		<!--<i class="fab fa-github fa-lg" id="github"></i>-->
+	</header>
+	<div id="container" class="grid-container">
+		<div id="currently">
+			<div id="currentheader">
+				<h2>Currently</h2>
+			</div>
+		</div>
+		<div id="forecast">
+			<div id="forecastheader">
+				<h2>Forecast</h2>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
