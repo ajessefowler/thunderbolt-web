@@ -41,6 +41,8 @@ h3 {
 	width: 100%;
 	height: 38px;
 	background-color: #718792;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
 }
 
 #logo {
@@ -130,8 +132,8 @@ h3 {
 	display: grid;
 	width: 85%;
 	grid-template-rows: 450px 450px;
-	grid-template-columns: 1fr 2fr 1fr;
-	grid-gap: 15px;
+	grid-template-columns: 1.5fr 2fr 1.5fr;
+	grid-gap: 13px;
 	margin-right: auto;
 	margin-left: auto;
 	padding-top: 67px;
@@ -141,6 +143,7 @@ h3 {
 #container > div {
 	background-color: white;
 	box-shadow: 0px 2px 6px #666666;
+	border-radius: 3px;
 }
 
 #currently {
