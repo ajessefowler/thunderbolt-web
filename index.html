@@ -7,6 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5E4JR7ga90CBm48krqqXd26CBFOuXxlA&libraries=places"></script>
 <script type="text/javascript" src="js/search.js"></script>
+<script type="text/javascript" src="js/getWeather.js"></script>
 <script type="text/javascript" src="js/getLocation.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
@@ -24,17 +25,23 @@
 			<i class="fas fa-search" id="search"></i>
 		</div>
 		<i class="fas fa-heart fa-lg" id="favorites"></i>
-		<!--<i class="fab fa-github fa-lg" id="github"></i>-->
+		<a href="https://github.com/ajessefowler/thunderbolt-web"><i class="fab fa-github fa-lg" id="github"></i></a>
 	</header>
 	<div id="container" class="grid-container">
 		<div id="currently">
 			<div class="sectionheader">
 				<h2>Currently</h2>
 			</div>
+			<div id="currentcontent">
+				<img src="img/tempicon.svg" id="icon">
+				<p id="description">It's __°F in City.</p>
+			</div>
 		</div>
 		<div id="hourly">
 			<div class="sectionheader">
 				<h2>Hourly</h2>
+			</div>
+			<div id="hourlycontent">
 			</div>
 		</div>
 		<div id="daily">
