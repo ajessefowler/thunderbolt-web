@@ -13,7 +13,7 @@ header {
 	height: 50px;
 	margin: 0;
 	position: fixed;
-	box-shadow: 0px 1px 10px #666666;
+	box-shadow: 0px 1px 7px #262626;
 	z-index: 2;
 }
 
@@ -21,6 +21,13 @@ p {
 	font-family: 'Nunito', sans-serif;
 	font-weight: 400;
 	font-size: 16pt;
+}
+
+h1 {
+	font-family: 'Nunito', sans-serif;
+	color: #ffffff;
+	font-weight: 400;
+	font-size: 32pt;
 }
 
 h2 {
@@ -40,6 +47,16 @@ h3 {
 	font-size: 15pt;
 }
 
+.pac-container {
+	border-top: none;
+	margin-top: 1px !important;
+	padding-left: 7px !important;
+	padding-right: 7px !important;
+	padding-bottom: 6px !important;
+	border-bottom-left-radius: 5px !important;
+	border-bottom-right-radius: 5px !important;
+}
+
 .sectionheader {
 	display: flex;
 	justify-content: flex-start;
@@ -51,11 +68,39 @@ h3 {
 	border-top-left-radius: 3px;
 }
 
+.hour > p {
+	display: inline;
+}
+
+.hourlytemp {
+	font-size: 16pt;
+	padding-right: 35px;
+}
+
+.hourlytime {
+	font-size: 14pt;
+}
+
+#splashscreen {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding-top: 200px;
+	z-index: 5;
+	background-color: #666666;
+	opacity: 0.9;
+}
+
 #logo {
 	color: #ffffff;
 	position: fixed;
-	padding-top: 17px;
-	padding-left: 16px;
+	left: 22px;
 	transform: rotate(-20deg);
 	z-index: 3;
 }
@@ -63,9 +108,8 @@ h3 {
 #logolbl {
 	color: #ffffff;
 	position: fixed;
+	left: 34px;
 	margin: 0;
-	padding-left: 46px;
-	padding-top: 10px;
 	z-index: 3;
 }
 
@@ -77,29 +121,31 @@ h3 {
 }
 
 #location:hover {
-	color: #cccccc;
+	color: #B0BEC5;
 	cursor: pointer;
 }
 
 #searchbox {
-	display: inline-block;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 370px;
 	height: 30px;
 	background-color: #ffffff;
 	border-radius: 15px;
-	box-shadow: 0px 0px 5px #666666 inset;
+	box-shadow: 0px 0px 3px #666666 inset;
 }
 
 #autocomplete {
 	border: none;
 	background-color: transparent;
-	padding: 7px 10px 5px 10px;
-	width: 310px;
+	width: 370px;
 	text-align: center;
 	position: relative;
-	left: 15px;
 	font-family: 'Nunito', sans-serif;
 	letter-spacing: 1px;
+	padding-right: 10px;
+	padding-left: 10px;
 }
 
 #autocomplete:focus {
@@ -127,7 +173,7 @@ h3 {
 }
 
 #favorites:hover {
-	color: #cccccc;
+	color: #B0BEC5;
 	cursor: pointer;
 }
 
@@ -142,16 +188,16 @@ h3 {
 }
 
 #github:hover {
-	color: #cccccc;
+	color: #B0BEC5;
 	cursor: pointer;
 }
 
-#container {
+#maincontainer {
 	display: grid;
 	width: 85%;
-	grid-template-rows: 450px 450px;
+	grid-template-rows: 475px 475px;
 	grid-template-columns: 2fr 2fr 2fr;
-	grid-gap: 17px;
+	grid-gap: 16px;
 	margin-right: auto;
 	margin-left: auto;
 	padding-top: 70px;
@@ -160,7 +206,7 @@ h3 {
 	padding-left: 20px;
 }
 
-#container > div {
+#maincontainer > div {
 	background-color: white;
 	box-shadow: 0px 1px 6px #666666;
 	border-radius: 3px;
@@ -170,19 +216,72 @@ h3 {
 	grid-column: 1 / span 2;
 }
 
-#currentcontent {
-	width: 60%;
-	margin-left: auto;
-	margin-right: auto;
+#currentcontainer {
+	display: grid;
+	width: 70%;
+	grid-template-rows: 180px 180px 180px;
+	grid-template-columns: 1fr 3fr;
+	grid-row-gap: 10px;
+	grid-column-gap: 50px;
+	padding-top: 70px;
+	padding-left: 100px;
+}
+
+#faveicon {
+	display: none;
+	color: #ffffff;
+	position: absolute;
+	left: 764px;
+	padding: 6px;
+}
+
+#faveicon:hover {
+	color: #EF5350;
+	cursor: pointer;
+}
+
+#icondiv {
+	grid-row: 1 / span 2;
 }
 
 #icon {
 	display: block;
-	height: 200px;
+	height: 180px;
+}
+
+#descriptiondiv {
+	width: 250px;
+	padding-top: 10px;
+	grid-row: 1;
 }
 
 #description {
 	display: block;
+	font-size: 32pt;
+}
+
+#highlowdiv {
+	position: relative;
+	top: -100px;
+	width: 300px;
+	grid-row: 2;
+}
+
+#highlow {
+	font-size: 12pt;
+	font-weight: 300;
+}
+
+#detailsdiv {
+	grid-column: 1 / span 2;
+	grid-row: 3;
+	position: relative;
+	top: -210px;
+}
+
+#details {
+	font-size: 14pt;
+	font-weight: 300;
 }
 
 #radar {

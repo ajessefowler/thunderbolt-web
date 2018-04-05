@@ -1,54 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Thunderbolt Weather</title>
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5E4JR7ga90CBm48krqqXd26CBFOuXxlA&libraries=places"></script>
-<script type="text/javascript" src="js/search.js"></script>
-<script type="text/javascript" src="js/getWeather.js"></script>
-<script type="text/javascript" src="js/getLocation.js"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Thunderbolt Weather</title>
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5E4JR7ga90CBm48krqqXd26CBFOuXxlA&libraries=places,geometry"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/search.js"></script>
+	<script type="text/javascript" src="js/getLocation.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body>
-	<i class="fas fa-bolt fa-lg" id="logo"></i>
-	<h2 id="logolbl">Thunderbolt</h2>
+<!--
+	<div id="splashscreen">
+		<h1>Welcome to Thunderbolt Weather</h1>
+		<h2>A simple, minimalistic reference for weather in your area. Let's find your location to get started.</h2>
+		<div id="splashlocate">
+		</div>
+	</div>
+-->
 	<header>
-		<div id="locbox">
-			<i class="fas fa-location-arrow fa-lg" id="location" onclick="getLocation()"></i>
-		</div>
+		<i class="fas fa-bolt fa-lg" id="logo"></i>
+		<h2 id="logolbl">Thunderbolt</h2>
+		<i class="fas fa-location-arrow fa-lg" id="location" onclick="getLocation()"></i>
+
 		<div id="searchbox">
-			<input id="autocomplete" placeholder="Enter a city" type="text">
-			<i class="fas fa-search" id="search"></i>
+			<input id="autocomplete" placeholder="Enter a location" type="text">
 		</div>
+
 		<i class="fas fa-heart fa-lg" id="favorites"></i>
 		<a href="https://github.com/ajessefowler/thunderbolt-web"><i class="fab fa-github fa-lg" id="github"></i></a>
 	</header>
-	<div id="container" class="grid-container">
+
+	<div id="maincontainer" class="grid-container">
 		<div id="currently">
 			<div class="sectionheader">
-				<h2>Currently</h2>
+				<h2 id="currentheader">Currently in</h2>
+				<i class="far fa-heart fa-lg" id="faveicon"></i>
 			</div>
-			<div id="currentcontent">
-				<img src="img/tempicon.svg" id="icon">
-				<p id="description">It's __°F in City.</p>
+			<div id="currentcontainer" class="grid-container"> 
+				<div id="icondiv">
+					<img src="img/tempicon.svg" id="icon">
+				</div>
+				<div id="descriptiondiv">
+					<p id="description">00°F</p>
+				</div>
+				<div id="highlowdiv">
+					<p id="highlow">High: 170° &nbsp;&nbsp; Low: 140° &nbsp;&nbsp; Humidity: 100%</p>
+				</div>
+				<div id="detailsdiv">
+					<p id="details">Sunrise: 7:00 &nbsp;&nbsp; Sunset: 8:00 &nbsp;&nbsp; Wind: 8 mph N &nbsp;&nbsp; Dew Point: 40°</p>
+				</div>
 			</div>
 		</div>
+
 		<div id="hourly">
 			<div class="sectionheader">
 				<h2>Hourly</h2>
 			</div>
 			<div id="hourlycontent">
+				<div class="hour" id="hour1">
+				</div>
+				<div class="hour" id="hour2">
+				</div>
 			</div>
 		</div>
+
 		<div id="daily">
 			<div class="sectionheader">
 				<h2>Daily</h2>
 			</div>
 		</div>
+
 		<div id="radar">
 			<div class="sectionheader">
 				<h2>Radar</h2>
