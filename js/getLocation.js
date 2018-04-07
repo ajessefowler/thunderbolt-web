@@ -45,12 +45,18 @@ $(function searchLocation() {
 
 	let splashcomplete = new google.maps.places.Autocomplete(document.querySelector('#splashsearch'));
 	google.maps.event.addListener(splashcomplete, 'place_changed', function() {
-		let place = this.getPlace();
-		let lat = place.geometry.location.lat();
-		let long = place.geometry.location.lng();
-		let city = place.address_components[3].long_name;
-		getWeather(lat, long);
-		updateHeader(city);
+		var splashPlace = this.getPlace();
+		var splashLat = splashPlace.geometry.location.lat();
+		var splashLong = splashPlace.geometry.location.lng();
+		var splashCity = splashPlace.address_components[3].long_name;
+	});
+
+	$('#splashsearchbutton').click(function() {
+		console.log('fired');
+		console.log(splashPlace);
+		getWeather(splashLat, splashLong);
+		updateHeader(splahCity);
+		removeSplash();
 	});
 });
 
@@ -62,6 +68,21 @@ function getWeather(lat, long) {
 	$.getJSON('https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/' + weatherKey + '/' + lat + ',' + long).done(function(data) {
 		let temp = Math.floor(data.currently.temperature);
 		$('#description').html(temp + '°F');
+
+		// Loads Skycons, and adds the icon for current conditions to the page
+		var icons = new Skycons({'color': '#000000'}),
+     	list  = ["clear-day", "clear-night", "partly-cloudy-day", "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind", "fog"], i;
+
+  		for(i = list.length; i--; ) {
+			var weatherType = list[i], elements = document.getElementsByClassName( weatherType );
+      		console.log(elements);
+			for (e = elements.length; e--;){
+   				icons.set( elements[e], weatherType );
+			}
+		}
+
+		icons.add(document.getElementById("icon"), data.currently.icon);
+ 		icons.play();
 	});
 }
 
