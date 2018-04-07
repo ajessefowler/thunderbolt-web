@@ -8,7 +8,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5E4JR7ga90CBm48krqqXd26CBFOuXxlA&libraries=places,geometry"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/search.js"></script>
+	<script type="text/javascript" src="js/animations.js"></script>
 	<script type="text/javascript" src="js/getLocation.js"></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,10 +17,16 @@
 <body>
 <!--
 	<div id="splashscreen">
-		<h1>Welcome to Thunderbolt Weather</h1>
-		<h2>A simple, minimalistic reference for weather in your area. Let's find your location to get started.</h2>
-		<div id="splashlocate">
+		<h1 class="splashtext">Welcome to Thunderbolt Weather</h1>
+		<h2 class="splashtext">A simple, minimalistic reference for weather in your area. Let's find your location to get started.</h2>
+		<div id="splashsearchdiv">
+			<i class="fas fa-location-arrow fa-2x" id="splashlocbutton" onclick="getLocation()"></i>
+			<div id="splashlocate">
+					<input id="splashsearch" placeholder="Search for a location" type="text">
+			</div>
+			<i class="fas fa-search fa-2x" id="splashsearchbutton"></i>
 		</div>
+		<i class="far fa-times-circle fa-3x" id="splashexit" onclick="removeSplash()"></i>
 	</div>
 -->
 	<header>
@@ -29,7 +35,7 @@
 		<i class="fas fa-location-arrow fa-lg" id="location" onclick="getLocation()"></i>
 
 		<div id="searchbox">
-			<input id="autocomplete" placeholder="Enter a location" type="text">
+			<input id="autocomplete" placeholder="Search for a location" type="text">
 		</div>
 
 		<i class="fas fa-heart fa-lg" id="favorites"></i>

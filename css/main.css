@@ -1,7 +1,8 @@
-body {
+html,body {
 	background-color: #cccccc;
 	padding: 0;
 	margin: 0;
+	overflow: auto;
 }
 
 header {
@@ -32,7 +33,6 @@ h1 {
 
 h2 {
 	margin: 0;
-	padding-left: 15px;
 	font-family: 'Nunito', sans-serif;
 	color: #ffffff;
 	font-weight: 300;
@@ -53,8 +53,14 @@ h3 {
 	padding-left: 7px !important;
 	padding-right: 7px !important;
 	padding-bottom: 6px !important;
-	border-bottom-left-radius: 5px !important;
-	border-bottom-right-radius: 5px !important;
+	border-bottom-left-radius: 3px !important;
+	border-bottom-right-radius: 3px !important;
+}
+
+.splashtext {
+	padding-left: 30px;
+	padding-right: 30px;
+	text-align: center;
 }
 
 .sectionheader {
@@ -66,6 +72,10 @@ h3 {
 	background-color: #718792;
 	border-top-right-radius: 3px;
 	border-top-left-radius: 3px;
+}
+
+.sectionheader > h2 {
+	padding-left: 15px;
 }
 
 .hour > p {
@@ -93,8 +103,81 @@ h3 {
 	width: 100%;
 	padding-top: 200px;
 	z-index: 5;
-	background-color: #666666;
-	opacity: 0.9;
+	background-color: #455A64;
+	opacity: 1;
+}
+
+#splashscreen > h2 {
+	position: relative;
+	top: -16px;
+}
+
+#splashlocbutton {
+	color: #ffffff;
+	padding: 8px;
+}
+
+#splashlocbutton:hover {
+	color: #B0BEC5;
+	cursor: pointer;
+}
+
+#splashsearchdiv {
+	display: flex;
+	flex-direction: row;
+	padding-top: 45px;
+}
+
+#splashlocate {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 500px;
+	height: 50px;
+	margin: 0 20px 0 20px;
+	background-color: #ffffff;
+	border-radius: 25px;
+	box-shadow: 0px 0px 5px #666666 inset;
+}
+
+#splashsearch {
+	border: none;
+	background-color: transparent;
+	width: 500px;
+	text-align: center;
+	font-family: 'Nunito', sans-serif;
+	letter-spacing: 1px;
+	font-size: 16pt;
+	padding-right: 18px;
+	padding-left: 18px;
+}
+
+#splashsearch:focus {
+	outline: none;
+}
+
+#splashsearchbutton {
+	color: #ffffff;
+	transform: scaleX(-1);
+	padding: 8px
+}
+
+#splashsearchbutton:hover {
+	color: #B0BEC5;
+	cursor: pointer;
+}
+
+#splashexit {
+	color: #EF5350;
+	position: absolute;
+	top: 19px;
+	right: 19px;
+	padding: 6px;
+}
+
+#splashexit:hover {
+	color: #D32F2F;
+	cursor: pointer;
 }
 
 #logo {
@@ -108,7 +191,7 @@ h3 {
 #logolbl {
 	color: #ffffff;
 	position: fixed;
-	left: 34px;
+	left: 47px;
 	margin: 0;
 	z-index: 3;
 }
@@ -141,7 +224,7 @@ h3 {
 	background-color: transparent;
 	width: 370px;
 	text-align: center;
-	position: relative;
+	font-size: 12pt;
 	font-family: 'Nunito', sans-serif;
 	letter-spacing: 1px;
 	padding-right: 10px;
