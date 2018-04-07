@@ -2,7 +2,7 @@ html,body {
 	background-color: #cccccc;
 	padding: 0;
 	margin: 0;
-	overflow: hidden;
+	overflow: auto;
 }
 
 header {
@@ -45,6 +45,18 @@ h3 {
 	color: #ffffff;
 	font-weight: 200;
 	font-size: 15pt;
+}
+
+.currentdetails {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 75px 5px 75px;
+}
+
+.currentdetails > p {
+	font-size: 14pt;
 }
 
 .pac-container {
@@ -103,7 +115,7 @@ h3 {
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	padding-top: 200px;
+	padding-top: 240px;
 	z-index: 5;
 	background-color: #455A64;
 	opacity: 1;
@@ -279,9 +291,9 @@ h3 {
 
 #maincontainer {
 	display: grid;
-	width: 85%;
+	width: 90%;
 	grid-template-rows: 475px 475px;
-	grid-template-columns: 2fr 2fr 2fr;
+	grid-template-columns: 2.7fr 2fr 2.7fr;
 	grid-gap: 16px;
 	margin-right: auto;
 	margin-left: auto;
@@ -301,23 +313,28 @@ h3 {
 	grid-column: 1 / span 2;
 }
 
-#currentcontainer {
-	display: grid;
-	width: 70%;
-	grid-template-rows: 180px 180px 180px;
-	grid-template-columns: 1fr 3fr;
-	grid-row-gap: 10px;
-	grid-column-gap: 50px;
-	padding-top: 70px;
-	padding-left: 100px;
+#currentcontent {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 80px 40px 25px 40px;
+}
+
+#temp {
+	color: #000000;
+	margin: 0;
+}
+
+#condition {
+	color: #000000;
 }
 
 #faveicon {
 	display: none;
 	color: #ffffff;
-	position: absolute;
-	left: 764px;
-	padding: 6px;
+	margin-left: auto;
+	padding: 6px 15px 6px 6px;
 }
 
 #faveicon:hover {
@@ -325,48 +342,9 @@ h3 {
 	cursor: pointer;
 }
 
-#icondiv {
-	grid-row: 1 / span 2;
-}
-
 #icon {
 	display: block;
 	height: 120px;
-}
-
-#descriptiondiv {
-	width: 250px;
-	padding-top: 10px;
-	grid-row: 1;
-}
-
-#description {
-	display: block;
-	font-size: 32pt;
-}
-
-#highlowdiv {
-	position: relative;
-	top: -100px;
-	width: 300px;
-	grid-row: 2;
-}
-
-#highlow {
-	font-size: 12pt;
-	font-weight: 300;
-}
-
-#detailsdiv {
-	grid-column: 1 / span 2;
-	grid-row: 3;
-	position: relative;
-	top: -210px;
-}
-
-#details {
-	font-size: 14pt;
-	font-weight: 300;
 }
 
 #radar {

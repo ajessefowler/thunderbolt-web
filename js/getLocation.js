@@ -29,6 +29,10 @@ function findCoords(position) {
 		getWeather(lat, long);
 		updateHeader(city);
 	});
+
+	if (document.getElementById("splashscreen")) {
+		removeSplash();
+	}
 }
 
 // Implements Google Autocomplete, and updates HTML and finds weather based on selection
@@ -67,15 +71,23 @@ function getWeather(lat, long) {
 	// For testing purposes, cors-anywhere has been added to allow access to the Dark Sky API locally
 	$.getJSON('https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/' + weatherKey + '/' + lat + ',' + long).done(function(data) {
 		let temp = Math.floor(data.currently.temperature);
-		$('#description').html(temp + '°F');
+		let condition = data.minutely.summary;
+		let windSpeed = Math.floor(data.currently.windSpeed);
+		let humidity = (data.currently.humidity * 100);
+		let dewPoint = Math.floor(data.currently.dewPoint);
+		$('#temp').html(temp + '°F');
+		$('#condition').html(condition);
+		$('#wind').html('<strong>Wind:</strong> ' + windSpeed + ' mph');
+		$('#humidity').html('<strong>Humidity:</strong> ' + humidity + '%');
+		$('#dewpoint').html('<strong>Dew Point:</strong> ' + dewPoint + '°F');
 
 		// Loads Skycons, and adds the icon for current conditions to the page
-		var icons = new Skycons({'color': '#000000'}),
+		let icons = new Skycons({'color': '#000000'}),
      	list  = ["clear-day", "clear-night", "partly-cloudy-day", "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind", "fog"], i;
 
   		for(i = list.length; i--; ) {
-			var weatherType = list[i], elements = document.getElementsByClassName( weatherType );
-      		console.log(elements);
+			let weatherType = list[i], elements = document.getElementsByClassName( weatherType );
+
 			for (e = elements.length; e--;){
    				icons.set( elements[e], weatherType );
 			}
