@@ -70,16 +70,22 @@ function getWeather(lat, long) {
 
 	// For testing purposes, cors-anywhere has been added to allow access to the Dark Sky API locally
 	$.getJSON('https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/' + weatherKey + '/' + lat + ',' + long).done(function(data) {
+		
+		// Initialize weather data
 		let temp = Math.floor(data.currently.temperature);
 		let condition = data.minutely.summary;
 		let windSpeed = Math.floor(data.currently.windSpeed);
-		let humidity = (data.currently.humidity * 100);
+		let humidity = Math.floor(data.currently.humidity * 100);
 		let dewPoint = Math.floor(data.currently.dewPoint);
+		let pressure = Math.floor(data.currently.pressure);
+
+		// Update HTML to reflect retrieved weather data
 		$('#temp').html(temp + '°F');
 		$('#condition').html(condition);
 		$('#wind').html('<strong>Wind:</strong> ' + windSpeed + ' mph');
 		$('#humidity').html('<strong>Humidity:</strong> ' + humidity + '%');
 		$('#dewpoint').html('<strong>Dew Point:</strong> ' + dewPoint + '°F');
+		$('#pressure').html('<strong>Pressure:</strong> ' + pressure + ' mb');
 
 		// Loads Skycons, and adds the icon for current conditions to the page
 		let icons = new Skycons({'color': '#000000'}),

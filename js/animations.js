@@ -8,6 +8,11 @@ function removeSplash() {
 	$('html,body').css('overflow','auto');
 }
 
+// Slides favorites menu in and out on click
+function toggleFavoritesMenu() {
+	$('#favoritelocations').slideToggle();
+}
+
 // Animates the border radii and shadows on focus and blur. Each corner radius must be animated separately to function.
 $(function() {
 	$('#autocomplete').focus(function() {

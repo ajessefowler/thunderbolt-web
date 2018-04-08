@@ -50,13 +50,16 @@ h3 {
 .currentdetails {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0 75px 5px 75px;
+	padding: 0 50px 0 50px;
 }
 
 .currentdetails > p {
-	font-size: 14pt;
+	font-size: 13pt;
+	padding-left: 6px;
+	padding-right: 6px;
 }
 
 .pac-container {
@@ -289,15 +292,38 @@ h3 {
 	cursor: pointer;
 }
 
+#favoritelocations {
+	display: none;
+	background-color: #ffffff;
+	position: fixed;
+	top: 60px;
+	left: 65%;
+	width: 350px;
+	height: 200px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	box-shadow: 0px 0px 6px #666666;
+}
+
+#favoriteheader {
+	width: 100%;
+	height: 30px;
+	background-color: #EF5350;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+}
+
 #maincontainer {
 	display: grid;
 	width: 90%;
 	grid-template-rows: 475px 475px;
 	grid-template-columns: 2.7fr 2fr 2.7fr;
-	grid-gap: 16px;
+	grid-gap: 14px;
 	margin-right: auto;
 	margin-left: auto;
-	padding-top: 70px;
+	padding-top: 75px;
 	padding-bottom: 70px;
 	padding-right: 20px;
 	padding-left: 20px;
@@ -318,7 +344,7 @@ h3 {
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
-	padding: 80px 40px 25px 40px;
+	padding: 60px 40px 40px 40px;
 }
 
 #temp {
@@ -334,7 +360,8 @@ h3 {
 	display: none;
 	color: #ffffff;
 	margin-left: auto;
-	padding: 6px 15px 6px 6px;
+	padding: 6px 6px 6px 6px;
+	margin-right: 6px;
 }
 
 #faveicon:hover {

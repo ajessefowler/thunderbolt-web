@@ -39,9 +39,13 @@
 			<input id="autocomplete" placeholder="Search for a location" type="text">
 		</div>
 
-		<i class="fas fa-heart fa-lg" id="favorites"></i>
+		<i class="fas fa-heart fa-lg" id="favorites" onclick="toggleFavoritesMenu()"></i>
 		<a href="https://github.com/ajessefowler/thunderbolt-web"><i class="fab fa-github fa-lg" id="github"></i></a>
 	</header>
+
+	<div id="favoritelocations">
+		<div id="favoriteheader"></div>
+	</div>
 
 	<div id="maincontainer" class="grid-container">
 		<div id="currently">
@@ -60,6 +64,7 @@
 				<p id="wind"></p>
 				<p id="humidity"></p>
 				<p id="dewpoint"></p>
+				<p id="pressure"></p>
 			</div>
 			<div class="currentdetails">
 			</div>
