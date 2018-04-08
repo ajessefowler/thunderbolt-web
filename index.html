@@ -44,10 +44,13 @@
 	</header>
 
 	<div id="favoritelocations">
-		<div id="favoriteheader"></div>
+		<div id="favoriteheader">
+			<p id="favoriteslabel">Favorites</p>
+		</div>
 	</div>
 
 	<div id="maincontainer" class="grid-container">
+
 		<div id="currently">
 			<div class="sectionheader">
 				<h2 id="currentheader">Currently</h2>
@@ -61,12 +64,14 @@
 				</div>
 			</div>
 			<div class="currentdetails">
+				<p id="feelslike"></p>
+				<p id="chanceprecip"></p>
 				<p id="wind"></p>
 				<p id="humidity"></p>
-				<p id="dewpoint"></p>
+				<p id="sunrise"></p>
+				<p id="sunset"></p>
 				<p id="pressure"></p>
-			</div>
-			<div class="currentdetails">
+				<p id="dewpoint"></p>
 			</div>
 		</div>
 
@@ -75,9 +80,56 @@
 				<h2>Hourly</h2>
 			</div>
 			<div id="hourlycontent">
+				<h2 id="hourlysummary"></h2>
 				<div class="hour" id="hour1">
+					<p id="hourtime1" class="hourlytime"></p>
+					<canvas id="houricon1" class="houricon"></canvas>
+					<p id="hourtemp1" class="hourlytemp"></p>
 				</div>
 				<div class="hour" id="hour2">
+					<p id="hourtime2" class="hourlytime"></p>
+					<canvas id="houricon2" class="houricon"></canvas>
+					<p id="hourtemp2" class="hourlytemp"></p>
+				</div>
+				<div class="hour" id="hour3">
+					<p id="hourtime3" class="hourlytime"></p>
+					<canvas id="houricon3" class="houricon"></canvas>
+					<p id="hourtemp3" class="hourlytemp"></p>
+				</div>
+				<div class="hour" id="hour4">
+					<p id="hourtime4" class="hourlytime"></p>
+					<canvas id="houricon4" class="houricon"></canvas>
+					<p id="hourtemp4" class="hourlytemp"></p>
+				</div>
+				<div class="hour" id="hour5">
+					<p id="hourtime5" class="hourlytime"></p>
+					<canvas id="houricon5" class="houricon"></canvas>
+					<p id="hourtemp5" class="hourlytemp"></p>
+				</div>
+				<div class="hour" id="hour6">
+					<p id="hourtime6" class="hourlytime"></p>
+					<canvas id="houricon6" class="houricon"></canvas>
+					<p id="hourtemp6" class="hourlytemp"></p>
+				</div>
+				<div class="hour" id="hour7">
+					<p id="hourtime7" class="hourlytime"></p>
+					<canvas id="houricon7" class="houricon"></canvas>
+					<p id="hourtemp7" class="hourlytemp"></p>
+				</div>
+				<div class="hour" id="hour8">
+					<p id="hourtime8" class="hourlytime"></p>
+					<canvas id="houricon8" class="houricon"></canvas>
+					<p id="hourtemp8" class="hourlytemp"></p>
+				</div>
+				<div class="hour" id="hour9">
+						<p id="hourtime9" class="hourlytime"></p>
+						<canvas id="houricon9" class="houricon"></canvas>
+						<p id="hourtemp9" class="hourlytemp"></p>
+				</div>
+				<div class="hour" id="hour10">
+						<p id="hourtime10" class="hourlytime"></p>
+						<canvas id="houricon10" class="houricon"></canvas>
+						<p id="hourtemp10" class="hourlytemp"></p>
 				</div>
 			</div>
 		</div>
@@ -93,6 +145,7 @@
 				<h2>Radar</h2>
 			</div>
 		</div>
+		
 	</div>
 </body>
 </html>

@@ -72,12 +72,25 @@ function getWeather(lat, long) {
 	$.getJSON('https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/' + weatherKey + '/' + lat + ',' + long).done(function(data) {
 		
 		// Initialize weather data
-		let temp = Math.floor(data.currently.temperature);
+		let temp = Math.round(data.currently.temperature);
+		let apparentTemp = Math.round(data.currently.apparentTemperature);
 		let condition = data.minutely.summary;
-		let windSpeed = Math.floor(data.currently.windSpeed);
-		let humidity = Math.floor(data.currently.humidity * 100);
-		let dewPoint = Math.floor(data.currently.dewPoint);
-		let pressure = Math.floor(data.currently.pressure);
+		let windSpeed = Math.round(data.currently.windSpeed);
+		let windDirection = data.currently.windBearing;
+		let humidity = Math.round(data.currently.humidity * 100);
+		let dewPoint = Math.round(data.currently.dewPoint);
+		let pressure = Math.round(data.currently.pressure);
+		let chancePrecip = data.currently.precipProbability;
+		let hourlySummary = data.hourly.summary;
+
+		// Find sunrise time
+		let sunriseUnix = data.daily.data[0].sunriseTime;
+		let sunrise = getTime(sunriseUnix);
+
+		// Find sunset time
+		let sunsetUnix = data.daily.data[0].sunsetTime;
+		let sunset = getTime(sunsetUnix);
+
 
 		// Update HTML to reflect retrieved weather data
 		$('#temp').html(temp + '°F');
@@ -86,22 +99,67 @@ function getWeather(lat, long) {
 		$('#humidity').html('<strong>Humidity:</strong> ' + humidity + '%');
 		$('#dewpoint').html('<strong>Dew Point:</strong> ' + dewPoint + '°F');
 		$('#pressure').html('<strong>Pressure:</strong> ' + pressure + ' mb');
+		$('#feelslike').html('<strong>Feels like:</strong> ' + apparentTemp + '°F');
+		$('#sunrise').html('<strong>Sunrise:</strong> ' + sunrise);
+		$('#sunset').html('<strong>Sunset:</strong> ' + sunset);
+		$('#chanceprecip').html('<strong>Precipitaiton:</strong> ' + chancePrecip + '%');
+		$('#hourlysummary').html(hourlySummary);
+
+		// Update hourly data
+		let hourlyTimeUnix = [];
+		let hourlyTime = [];
+		let hourlyTemp = [];
+		for (let j = 1; j < 11; j++) {
+			hourlyTimeUnix[j] = data.hourly.data[j].time;
+			hourlyTime[j] = getTime(hourlyTimeUnix[j]);
+			hourlyTemp[j] = Math.round(data.hourly.data[j].temperature);
+			document.getElementById('hourtime' + j).innerHTML = hourlyTime[j];
+			document.getElementById('hourtemp' + j).innerText = hourlyTemp[j] + '°';
+		}
 
 		// Loads Skycons, and adds the icon for current conditions to the page
 		let icons = new Skycons({'color': '#000000'}),
      	list  = ["clear-day", "clear-night", "partly-cloudy-day", "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind", "fog"], i;
 
-  		for(i = list.length; i--; ) {
-			let weatherType = list[i], elements = document.getElementsByClassName( weatherType );
+  		for(i = list.length; i--;) {
+			let weatherType = list[i], elements = document.getElementsByClassName(weatherType);
 
 			for (e = elements.length; e--;){
-   				icons.set( elements[e], weatherType );
+   				icons.set(elements[e], weatherType);
 			}
 		}
 
-		icons.add(document.getElementById("icon"), data.currently.icon);
+		// Adds icons to page
+		icons.add(document.getElementById('icon'), data.currently.icon);
+		for (let i = 1; i < 11; i++) {
+			icons.add(document.getElementById('houricon' + i), data.hourly.data[i].icon);
+		}
+
  		icons.play();
 	});
+}
+
+// Converts time into useable format
+function getTime(unixTime) {
+
+	let jsTime = new Date(unixTime * 1000);
+	let hour = 0;
+	let meridiem = '';
+
+	if (jsTime.getHours() === 0) {
+		hour = 12;
+		meridiem = 'AM';
+	} else if (jsTime.getHours() < 12) {
+		hour = jsTime.getHours();
+		meridiem = 'AM';
+	} else {
+		hour = (jsTime.getHours() - 12);
+		meridiem = 'PM';
+	}
+	let min = jsTime.getMinutes() < 10 ? '0' + jsTime.getMinutes() : jsTime.getMinutes();
+	let time = hour + ':' + min + ' ' + meridiem;
+
+	return time;
 }
 
 // Alerts user when their location cannot be found

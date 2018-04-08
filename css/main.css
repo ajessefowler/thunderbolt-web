@@ -51,15 +51,38 @@ h3 {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
-	padding: 0 50px 0 50px;
+	padding: 0 40px 0 40px;
 }
 
 .currentdetails > p {
 	font-size: 13pt;
-	padding-left: 6px;
-	padding-right: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+.hour {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 90%;
+	padding-top: 13px;
+	border-top: 1px #CFD8DC solid;
+}
+
+.hour > p {
+	font-size: 13pt;
+	margin: 0;
+	font-weight: bold;
+}
+
+.houricon {
+	height: 40px;
+	align-self: center;
 }
 
 .pac-container {
@@ -93,19 +116,6 @@ h3 {
 
 .sectionheader > h2 {
 	padding-left: 15px;
-}
-
-.hour > p {
-	display: inline;
-}
-
-.hourlytemp {
-	font-size: 16pt;
-	padding-right: 35px;
-}
-
-.hourlytime {
-	font-size: 14pt;
 }
 
 #splashscreen {
@@ -296,10 +306,10 @@ h3 {
 	display: none;
 	background-color: #ffffff;
 	position: fixed;
-	top: 60px;
+	top: 58px;
 	left: 65%;
-	width: 350px;
-	height: 200px;
+	width: 300px;
+	height: 250px;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
 	border-bottom-left-radius: 3px;
@@ -308,6 +318,9 @@ h3 {
 }
 
 #favoriteheader {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 	width: 100%;
 	height: 30px;
 	background-color: #EF5350;
@@ -315,11 +328,19 @@ h3 {
 	border-top-left-radius: 3px;
 }
 
+#favoriteslabel {
+	margin: 0;
+	padding-left: 12px;
+	font-size: 13pt;
+	color: #ffffff;
+	font-weight: 300;
+}
+
 #maincontainer {
 	display: grid;
 	width: 90%;
-	grid-template-rows: 475px 475px;
-	grid-template-columns: 2.7fr 2fr 2.7fr;
+	grid-template-rows: 400px 400px 600px;
+	grid-template-columns: 2fr 1fr;
 	grid-gap: 14px;
 	margin-right: auto;
 	margin-left: auto;
@@ -335,16 +356,12 @@ h3 {
 	border-radius: 3px;
 }
 
-#currently {
-	grid-column: 1 / span 2;
-}
-
 #currentcontent {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
-	padding: 60px 40px 40px 40px;
+	padding: 60px 40px 60px 40px;
 }
 
 #temp {
@@ -371,9 +388,29 @@ h3 {
 
 #icon {
 	display: block;
-	height: 120px;
+	height: 130px;
+}
+
+#hourly {
+	grid-column: 2 / span 2;
+	grid-row: 1 / span 2;
+}
+
+#hourlycontent {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	padding: 25px 25px 35px 25px;
+	height: 724px;
+}
+
+#hourlycontent > h2 {
+	color: #000000;
+	font-size: 16pt;
+	padding-bottom: 10px;
 }
 
 #radar {
-	grid-column: 2 / span 2;
+	grid-column: 1 / span 3;
 }
