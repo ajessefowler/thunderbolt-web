@@ -69,20 +69,46 @@ h3 {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	width: 90%;
-	padding-top: 13px;
+	width: 95%;
+	padding: 14px 8px 0px 8px;
 	border-top: 1px #CFD8DC solid;
 }
 
 .hour > p {
-	font-size: 13pt;
+	font-size: 15pt;
 	margin: 0;
-	font-weight: bold;
 }
 
 .houricon {
 	height: 40px;
 	align-self: center;
+	position: relative;
+	top: -3px;
+}
+
+.day {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	margin-top: 15px;
+	padding: 0 5px 10px 5px;
+	width: 113px;
+	border-radius: 3px;
+}
+
+.day > p {
+	font-size: 13pt;
+}
+
+.dayicon {
+	height: 40px;
+}
+
+.dayofweek {
+	margin-top: 6px;
+	padding: 0 8px 0 8px;
+	border-bottom: 1px solid #CFD8DC;
 }
 
 .pac-container {
@@ -118,6 +144,14 @@ h3 {
 	padding-left: 15px;
 }
 
+.high {
+	margin: 30px 0 4px 0;
+}
+
+.low {
+	margin: 4px 0 0 0;
+}
+
 #splashscreen {
 	display: flex;
 	flex-direction: column;
@@ -128,15 +162,15 @@ h3 {
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	padding-top: 240px;
+	padding-top: 220px;
 	z-index: 5;
 	background-color: #455A64;
 	opacity: 1;
 }
 
 #splashscreen > h2 {
-	position: relative;
-	top: -16px;
+	padding-bottom: 16px;
+	border-bottom: 1px solid #718792;
 }
 
 #splashlocbutton {
@@ -315,6 +349,7 @@ h3 {
 	border-bottom-left-radius: 3px;
 	border-bottom-right-radius: 3px;
 	box-shadow: 0px 0px 6px #666666;
+	z-index: 10;
 }
 
 #favoriteheader {
@@ -341,7 +376,7 @@ h3 {
 	width: 90%;
 	grid-template-rows: 400px 400px 600px;
 	grid-template-columns: 2fr 1fr;
-	grid-gap: 14px;
+	grid-gap: 16px;
 	margin-right: auto;
 	margin-left: auto;
 	padding-top: 75px;
@@ -401,7 +436,7 @@ h3 {
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	padding: 25px 25px 35px 25px;
+	padding: 25px 25px 40px 25px;
 	height: 724px;
 }
 
@@ -409,6 +444,25 @@ h3 {
 	color: #000000;
 	font-size: 16pt;
 	padding-bottom: 10px;
+	text-align: center;
+}
+
+#dailysummary {
+	color: #000000;
+	font-size: 15pt;
+	text-align: left;
+	padding: 15px 8px 15px 8px;
+	margin: 0 17px 0 17px;
+	border-bottom: 1px #CFD8DC solid;
+}
+
+#dailyforecast {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 657px;
+	padding: 0 40px 15px 40px;
 }
 
 #radar {

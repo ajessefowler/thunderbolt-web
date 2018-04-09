@@ -37,6 +37,8 @@ function findCoords(position) {
 
 // Implements Google Autocomplete, and updates HTML and finds weather based on selection
 $(function searchLocation() {
+
+	// Autocomplete and listener for main search bar
 	let autocomplete = new google.maps.places.Autocomplete(document.querySelector('#autocomplete'));
 	google.maps.event.addListener(autocomplete, 'place_changed', function() {
 		let place = this.getPlace();
@@ -47,6 +49,7 @@ $(function searchLocation() {
 		updateHeader(city);
 	});
 
+	// Autocomplete and listener for splashscreen search bar
 	let splashcomplete = new google.maps.places.Autocomplete(document.querySelector('#splashsearch'));
 	google.maps.event.addListener(splashcomplete, 'place_changed', function() {
 		var splashPlace = this.getPlace();
@@ -55,6 +58,7 @@ $(function searchLocation() {
 		var splashCity = splashPlace.address_components[3].long_name;
 	});
 
+	// Trying to get search field to only send results on click of search button
 	$('#splashsearchbutton').click(function() {
 		console.log('fired');
 		console.log(splashPlace);
@@ -80,8 +84,9 @@ function getWeather(lat, long) {
 		let humidity = Math.round(data.currently.humidity * 100);
 		let dewPoint = Math.round(data.currently.dewPoint);
 		let pressure = Math.round(data.currently.pressure);
-		let chancePrecip = data.currently.precipProbability;
+		let chancePrecip = Math.round(data.currently.precipProbability * 100);
 		let hourlySummary = data.hourly.summary;
+		let dailySummary = data.daily.summary;
 
 		// Find sunrise time
 		let sunriseUnix = data.daily.data[0].sunriseTime;
@@ -97,29 +102,31 @@ function getWeather(lat, long) {
 		$('#condition').html(condition);
 		$('#wind').html('<strong>Wind:</strong> ' + windSpeed + ' mph');
 		$('#humidity').html('<strong>Humidity:</strong> ' + humidity + '%');
-		$('#dewpoint').html('<strong>Dew Point:</strong> ' + dewPoint + '°F');
+		$('#dewpoint').html('<strong>Dew Point:</strong> ' + dewPoint + '°');
 		$('#pressure').html('<strong>Pressure:</strong> ' + pressure + ' mb');
-		$('#feelslike').html('<strong>Feels like:</strong> ' + apparentTemp + '°F');
+		$('#feelslike').html('<strong>Feels Like:</strong> ' + apparentTemp + '°');
 		$('#sunrise').html('<strong>Sunrise:</strong> ' + sunrise);
 		$('#sunset').html('<strong>Sunset:</strong> ' + sunset);
-		$('#chanceprecip').html('<strong>Precipitaiton:</strong> ' + chancePrecip + '%');
+		$('#chanceprecip').html('<strong>Precipitation:</strong> ' + chancePrecip + '%');
 		$('#hourlysummary').html(hourlySummary);
+		$('#dailysummary').html(dailySummary);
 
 		// Update hourly data
-		let hourlyTimeUnix = [];
-		let hourlyTime = [];
-		let hourlyTemp = [];
 		for (let j = 1; j < 11; j++) {
-			hourlyTimeUnix[j] = data.hourly.data[j].time;
-			hourlyTime[j] = getTime(hourlyTimeUnix[j]);
-			hourlyTemp[j] = Math.round(data.hourly.data[j].temperature);
-			document.getElementById('hourtime' + j).innerHTML = hourlyTime[j];
-			document.getElementById('hourtemp' + j).innerText = hourlyTemp[j] + '°';
+			document.getElementById('hourtime' + j).innerHTML = getTime(data.hourly.data[j].time);
+			document.getElementById('hourtemp' + j).innerText = Math.round(data.hourly.data[j].temperature) + '°';
+		}
+
+		// Update daily data
+		for (let j = 1; j < 6; j++) {
+			document.getElementById('dayofweek' + j).innerHTML = getDayOfWeek(data.daily.data[j].time);
+			document.getElementById('high' + j).innerHTML = Math.round(data.daily.data[j].temperatureHigh) + '°';
+			document.getElementById('low' + j).innerHTML = Math.round(data.daily.data[j].temperatureLow) + '°';
 		}
 
 		// Loads Skycons, and adds the icon for current conditions to the page
 		let icons = new Skycons({'color': '#000000'}),
-     	list  = ["clear-day", "clear-night", "partly-cloudy-day", "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind", "fog"], i;
+     	list  = ['clear-day', 'clear-night', 'partly-cloudy-day', 'partly-cloudy-night', 'cloudy', 'rain', 'sleet', 'snow', 'wind', 'fog'], i;
 
   		for(i = list.length; i--;) {
 			let weatherType = list[i], elements = document.getElementsByClassName(weatherType);
@@ -134,12 +141,15 @@ function getWeather(lat, long) {
 		for (let i = 1; i < 11; i++) {
 			icons.add(document.getElementById('houricon' + i), data.hourly.data[i].icon);
 		}
+		for (let j = 1; j < 6; j++) {
+			icons.add(document.getElementById('dayicon' + j), data.daily.data[j].icon);
+		}
 
  		icons.play();
 	});
 }
 
-// Converts time into useable format
+// Converts from UNIX time to a 00:00 AM/PM format
 function getTime(unixTime) {
 
 	let jsTime = new Date(unixTime * 1000);
@@ -162,12 +172,46 @@ function getTime(unixTime) {
 	return time;
 }
 
+function getDayOfWeek(unixTime) {
+
+	let jsTime = new Date(unixTime * 1000);
+	let day = '';
+
+	switch (jsTime.getDay()) {
+		case 0:
+			day = 'Sunday';
+			break;
+		case 1:
+			day = 'Monday';
+			break;
+		case 2:
+			day = 'Tuesday';
+			break;
+		case 3:
+			day = 'Wednesday';
+			break;
+		case 4:
+			day = 'Thursday';
+			break;
+		case 5:
+			day = 'Friday';
+			break;
+		case 6:
+			day = 'Saturday';
+			break;
+		default:
+			console.log('Invalid time format');
+	}
+
+	return day;
+}
+
 // Alerts user when their location cannot be found
 function locationError() {
 	window.alert('Unable to retrieve location.');
 }
 
-// Updates currently header to reflect user's location
+// Updates current header to reflect user's location
 function updateHeader(city) {
 	document.getElementById('currentheader').innerHTML = 'Currently in ' + city;
 	$('#faveicon').fadeIn();
