@@ -53,7 +53,7 @@ h3 {
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	padding: 0 40px 0 40px;
+	padding: 20px 40px 0 40px;
 }
 
 .currentdetails > p {
@@ -93,7 +93,7 @@ h3 {
 	align-items: center;
 	margin-top: 15px;
 	padding: 0 5px 10px 5px;
-	width: 113px;
+	width: 14.3%;
 }
 
 .day:not(:last-child) {
@@ -149,10 +149,12 @@ h3 {
 
 .high {
 	margin: 30px 0 4px 0;
+	color: #F44336;
 }
 
 .low {
 	margin: 4px 0 0 0;
+	color: #263238;
 }
 
 #splashscreen {
@@ -376,10 +378,11 @@ h3 {
 
 #maincontainer {
 	display: grid;
-	width: 90%;
-	grid-template-rows: 400px 380px 600px;
+	width: 91%;
+	grid-template-rows: 400px 380px 640px;
 	grid-template-columns: 2fr 1fr;
-	grid-gap: 16px;
+	grid-row-gap: 18px;
+	grid-column-gap: 24px;
 	margin-right: auto;
 	margin-left: auto;
 	padding-top: 75px;
@@ -399,7 +402,9 @@ h3 {
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
-	padding: 60px 40px 60px 40px;
+	padding: 30px 5px 55px 5px;
+	margin: 0 45px 5px 45px;
+	border-bottom: 1px #CFD8DC solid;
 }
 
 #temp {
@@ -408,6 +413,7 @@ h3 {
 }
 
 #condition {
+	padding-top: 4px;
 	color: #000000;
 }
 
@@ -455,7 +461,7 @@ h3 {
 	font-size: 16pt;
 	text-align: left;
 	padding: 15px 10px 15px 10px;
-	margin: 0 25px 5px 25px;
+	margin: 0 25px 6px 25px;
 	border-bottom: 1px #CFD8DC solid;
 }
 
@@ -464,7 +470,6 @@ h3 {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	width: 697px;
 	padding: 0 20px 15px 20px;
 }
 
