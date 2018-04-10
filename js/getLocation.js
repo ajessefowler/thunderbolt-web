@@ -118,7 +118,7 @@ function getWeather(lat, long) {
 		}
 
 		// Update daily data
-		for (let j = 1; j < 6; j++) {
+		for (let j = 1; j < 8; j++) {
 			document.getElementById('dayofweek' + j).innerHTML = getDayOfWeek(data.daily.data[j].time);
 			document.getElementById('high' + j).innerHTML = Math.round(data.daily.data[j].temperatureHigh) + '°';
 			document.getElementById('low' + j).innerHTML = Math.round(data.daily.data[j].temperatureLow) + '°';
@@ -141,7 +141,7 @@ function getWeather(lat, long) {
 		for (let i = 1; i < 11; i++) {
 			icons.add(document.getElementById('houricon' + i), data.hourly.data[i].icon);
 		}
-		for (let j = 1; j < 6; j++) {
+		for (let j = 1; j < 8; j++) {
 			icons.add(document.getElementById('dayicon' + j), data.daily.data[j].icon);
 		}
 
@@ -179,25 +179,25 @@ function getDayOfWeek(unixTime) {
 
 	switch (jsTime.getDay()) {
 		case 0:
-			day = 'Sunday';
+			day = 'Sun';
 			break;
 		case 1:
-			day = 'Monday';
+			day = 'Mon';
 			break;
 		case 2:
-			day = 'Tuesday';
+			day = 'Tue';
 			break;
 		case 3:
-			day = 'Wednesday';
+			day = 'Wed';
 			break;
 		case 4:
-			day = 'Thursday';
+			day = 'Thu';
 			break;
 		case 5:
-			day = 'Friday';
+			day = 'Fri';
 			break;
 		case 6:
-			day = 'Saturday';
+			day = 'Sat';
 			break;
 		default:
 			console.log('Invalid time format');

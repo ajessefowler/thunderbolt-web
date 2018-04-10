@@ -95,10 +95,11 @@ h3 {
 	padding: 0 5px 10px 5px;
 	width: 113px;
 	border-radius: 3px;
+	border-right: 1px solid #CFD8DC;
 }
 
 .day > p {
-	font-size: 13pt;
+	font-size: 15pt;
 }
 
 .dayicon {
@@ -108,7 +109,6 @@ h3 {
 .dayofweek {
 	margin-top: 6px;
 	padding: 0 8px 0 8px;
-	border-bottom: 1px solid #CFD8DC;
 }
 
 .pac-container {
@@ -449,10 +449,10 @@ h3 {
 
 #dailysummary {
 	color: #000000;
-	font-size: 15pt;
+	font-size: 16pt;
 	text-align: left;
-	padding: 15px 8px 15px 8px;
-	margin: 0 17px 0 17px;
+	padding: 15px 10px 15px 10px;
+	margin: 0 25px 0 25px;
 	border-bottom: 1px #CFD8DC solid;
 }
 
@@ -461,8 +461,8 @@ h3 {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	width: 657px;
-	padding: 0 40px 15px 40px;
+	width: 677px;
+	padding: 0 30px 15px 30px;
 }
 
 #radar {
