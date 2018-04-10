@@ -94,7 +94,9 @@ h3 {
 	margin-top: 15px;
 	padding: 0 5px 10px 5px;
 	width: 113px;
-	border-radius: 3px;
+}
+
+.day:not(:last-child) {
 	border-right: 1px solid #CFD8DC;
 }
 
@@ -109,6 +111,7 @@ h3 {
 .dayofweek {
 	margin-top: 6px;
 	padding: 0 8px 0 8px;
+	font-weight: bold;
 }
 
 .pac-container {
@@ -374,7 +377,7 @@ h3 {
 #maincontainer {
 	display: grid;
 	width: 90%;
-	grid-template-rows: 400px 400px 600px;
+	grid-template-rows: 400px 380px 600px;
 	grid-template-columns: 2fr 1fr;
 	grid-gap: 16px;
 	margin-right: auto;
@@ -437,7 +440,7 @@ h3 {
 	justify-content: space-between;
 	align-items: center;
 	padding: 25px 25px 40px 25px;
-	height: 724px;
+	height: 708px;
 }
 
 #hourlycontent > h2 {
@@ -452,7 +455,7 @@ h3 {
 	font-size: 16pt;
 	text-align: left;
 	padding: 15px 10px 15px 10px;
-	margin: 0 25px 0 25px;
+	margin: 0 25px 5px 25px;
 	border-bottom: 1px #CFD8DC solid;
 }
 
@@ -461,8 +464,8 @@ h3 {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	width: 677px;
-	padding: 0 30px 15px 30px;
+	width: 697px;
+	padding: 0 20px 15px 20px;
 }
 
 #radar {
