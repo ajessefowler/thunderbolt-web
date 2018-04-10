@@ -30,6 +30,7 @@ function findCoords(position) {
 		updateHeader(city);
 	});
 
+	// Removes splashscreen if it is still visible
 	if (document.getElementById("splashscreen")) {
 		removeSplash();
 	}
@@ -75,46 +76,24 @@ function getWeather(lat, long) {
 	// For testing purposes, cors-anywhere has been added to allow access to the Dark Sky API locally
 	$.getJSON('https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/' + weatherKey + '/' + lat + ',' + long).done(function(data) {
 		
-		// Initialize weather data
-		let temp = Math.round(data.currently.temperature);
-		let apparentTemp = Math.round(data.currently.apparentTemperature);
-		let condition = data.minutely.summary;
-		let windSpeed = Math.round(data.currently.windSpeed);
-		let windDirection = data.currently.windBearing;
-		let humidity = Math.round(data.currently.humidity * 100);
-		let dewPoint = Math.round(data.currently.dewPoint);
-		let pressure = Math.round(data.currently.pressure);
-		let chancePrecip = Math.round(data.currently.precipProbability * 100);
-		let hourlySummary = data.hourly.summary;
-		let dailySummary = data.daily.summary;
-
-		// Find sunrise time
-		let sunriseUnix = data.daily.data[0].sunriseTime;
-		let sunrise = getTime(sunriseUnix);
-
-		// Find sunset time
-		let sunsetUnix = data.daily.data[0].sunsetTime;
-		let sunset = getTime(sunsetUnix);
-
-
 		// Update HTML to reflect retrieved weather data
-		$('#temp').html(temp + '°F');
-		$('#condition').html(condition);
-		$('#wind').html('<strong>Wind:</strong> ' + windSpeed + ' mph');
-		$('#humidity').html('<strong>Humidity:</strong> ' + humidity + '%');
-		$('#dewpoint').html('<strong>Dew Point:</strong> ' + dewPoint + '°');
-		$('#pressure').html('<strong>Pressure:</strong> ' + pressure + ' mb');
-		$('#feelslike').html('<strong>Feels Like:</strong> ' + apparentTemp + '°');
-		$('#sunrise').html('<strong>Sunrise:</strong> ' + sunrise);
-		$('#sunset').html('<strong>Sunset:</strong> ' + sunset);
-		$('#chanceprecip').html('<strong>Precipitation:</strong> ' + chancePrecip + '%');
-		$('#hourlysummary').html(hourlySummary);
-		$('#dailysummary').html(dailySummary);
+		$('#temp').html(Math.round(data.currently.temperature) + '°F');
+		$('#condition').html(data.minutely.summary);
+		$('#wind').html('<strong>Wind:</strong> ' + Math.round(data.currently.windSpeed) + ' mph');
+		$('#humidity').html('<strong>Humidity:</strong> ' + Math.round(data.currently.humidity * 100) + '%');
+		$('#dewpoint').html('<strong>Dew Point:</strong> ' + Math.round(data.currently.dewPoint) + '°');
+		$('#pressure').html('<strong>Pressure:</strong> ' + Math.round(data.currently.pressure) + ' mb');
+		$('#feelslike').html('<strong>Feels Like:</strong> ' + Math.round(data.currently.apparentTemperature) + '°');
+		$('#sunrise').html('<strong>Sunrise:</strong> ' + getTime(data.daily.data[0].sunriseTime));
+		$('#sunset').html('<strong>Sunset:</strong> ' + getTime(data.daily.data[0].sunsetTime));
+		$('#chanceprecip').html('<strong>Precipitation:</strong> ' + Math.round(data.currently.precipProbability * 100) + '%');
+		$('#hourlysummary').html(data.hourly.summary);
+		$('#dailysummary').html(data.daily.summary);
 
 		// Update hourly data
 		for (let j = 1; j < 11; j++) {
 			document.getElementById('hourtime' + j).innerHTML = getTime(data.hourly.data[j].time);
-			document.getElementById('hourtemp' + j).innerText = Math.round(data.hourly.data[j].temperature) + '°';
+			document.getElementById('hourtemp' + j).innerHTML = Math.round(data.hourly.data[j].temperature) + '°';
 		}
 
 		// Update daily data
@@ -149,9 +128,10 @@ function getWeather(lat, long) {
 	});
 }
 
-// Converts from UNIX time to a 00:00 AM/PM format
+// Returns time of day in 00:00 AM/PM format based off time retrieved from JSON data
 function getTime(unixTime) {
 
+	// Convert from milliseconds to seconds
 	let jsTime = new Date(unixTime * 1000);
 	let hour = 0;
 	let meridiem = '';
@@ -172,8 +152,10 @@ function getTime(unixTime) {
 	return time;
 }
 
+// Returns day of the week based off JSON data
 function getDayOfWeek(unixTime) {
 
+	// Convert from milliseconds to seconds
 	let jsTime = new Date(unixTime * 1000);
 	let day = '';
 
@@ -200,7 +182,7 @@ function getDayOfWeek(unixTime) {
 			day = 'Sat';
 			break;
 		default:
-			console.log('Invalid time format');
+			console.log('Day of week could not be retrieved.');
 	}
 
 	return day;
@@ -211,7 +193,7 @@ function locationError() {
 	window.alert('Unable to retrieve location.');
 }
 
-// Updates current header to reflect user's location
+// Updates current header to reflect selected location
 function updateHeader(city) {
 	document.getElementById('currentheader').innerHTML = 'Currently in ' + city;
 	$('#faveicon').fadeIn();
