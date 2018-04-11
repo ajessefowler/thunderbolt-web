@@ -18,7 +18,7 @@ function getLocation() {
 function findCoords(position) {
 	let lat = position.coords.latitude;
 	let long = position.coords.longitude;
-	let key = 'AIzaSyC2Mcoh2tL1KeJUbmn420w0lPvPclJJvMQ';
+	const key = 'AIzaSyC2Mcoh2tL1KeJUbmn420w0lPvPclJJvMQ';
 	let url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+ lat + ',' + long + '&key=' + key;
 	
 	$.getJSON(url).done(function(location) {
@@ -71,7 +71,7 @@ $(function searchLocation() {
 
 // Find the weather, given the user's latitude and longitude
 function getWeather(lat, long) {
-	let weatherKey = '014160f48f5c2882a6f60dcbeb59425e';
+	const weatherKey = '014160f48f5c2882a6f60dcbeb59425e';
 
 	// For testing purposes, cors-anywhere has been added to allow access to the Dark Sky API locally
 	$.getJSON('https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/' + weatherKey + '/' + lat + ',' + long).done(function(data) {
@@ -136,16 +136,25 @@ function getTime(unixTime) {
 	let hour = 0;
 	let meridiem = '';
 
-	if (jsTime.getHours() === 0) {
-		hour = 12;
-		meridiem = 'AM';
-	} else if (jsTime.getHours() < 12) {
-		hour = jsTime.getHours();
-		meridiem = 'AM';
-	} else {
-		hour = (jsTime.getHours() - 12);
-		meridiem = 'PM';
+	switch (jsTime.getHours()) {
+		case 0:
+			hour = 12;
+			meridiem = 'AM';
+			break;
+		case 12:
+			hour = 12;
+			meridiem = 'PM';
+			break;
+		default:
+			if (jsTime.getHours() < 12) {
+				hour = jsTime.getHours();
+				meridiem = 'PM';
+			} else {
+				hour = (jsTime.getHours() - 12);
+				meridiem = 'PM';
+			}
 	}
+
 	let min = jsTime.getMinutes() < 10 ? '0' + jsTime.getMinutes() : jsTime.getMinutes();
 	let time = hour + ':' + min + ' ' + meridiem;
 
