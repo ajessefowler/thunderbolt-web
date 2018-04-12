@@ -117,6 +117,7 @@ function getWeather(lat, long) {
 
 		// Adds icons to page
 		icons.add(document.getElementById('icon'), data.currently.icon);
+		
 		for (let i = 1; i < 11; i++) {
 			icons.add(document.getElementById('houricon' + i), data.hourly.data[i].icon);
 		}
@@ -148,7 +149,7 @@ function getTime(unixTime) {
 		default:
 			if (jsTime.getHours() < 12) {
 				hour = jsTime.getHours();
-				meridiem = 'PM';
+				meridiem = 'AM';
 			} else {
 				hour = (jsTime.getHours() - 12);
 				meridiem = 'PM';
@@ -206,4 +207,12 @@ function locationError() {
 function updateHeader(city) {
 	document.getElementById('currentheader').innerHTML = 'Currently in ' + city;
 	$('#faveicon').fadeIn();
+}
+
+function initMap(position) {
+	let map = new google.maps.Map(document.getElementById('map'), {
+		center: {lat: 40, lng: -83},
+		zoom: 8,
+		disableDefaultUI: true
+	});
 }

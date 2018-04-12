@@ -2,7 +2,7 @@ body {
 	background-image: url("../img/background.png");
 	padding: 0;
 	margin: 0;
-	overflow: hidden;
+	overflow: auto;
 }
 
 header {
@@ -443,8 +443,8 @@ h3 {
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	padding: 25px 25px 40px 25px;
-	height: 708px;
+	padding: 12px 25px 25px 25px;
+	height: 723px;
 }
 
 #hourlycontent > h2 {
@@ -473,4 +473,8 @@ h3 {
 
 #radar {
 	grid-column: 1 / span 3;
+}
+
+#map {
+	height: 600px;
 }
