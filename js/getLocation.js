@@ -81,10 +81,12 @@ function getWeather(lat, long) {
 		// Change font size of hourly summary if content is too long
 		if (data.hourly.summary.length > 110) {
 			document.getElementById('hourlysummary').style.fontSize = '14pt';
-			getElementById('hourlycontent').style.paddingTop = '13px';
+			document.getElementById('hourlysummary').style.paddingBottom = '12px';
 		} else if (data.hourly.summary.length > 100) {
 			document.getElementById('hourlysummary').style.fontSize = '15pt';
-			getElementById('hourlycontent').style.paddingTop = '12px';
+			document.getElementById('hourlysummary').style.paddingBottom = '12px';
+		} else if (data.hourly.summary.length > 71) {
+			document.getElementById('hourlysummary').style.paddingBottom = '10px';
 		}
 
 		// Update HTML to reflect retrieved weather data
@@ -116,7 +118,7 @@ function getWeather(lat, long) {
 		icons.add(document.getElementById('icon'), data.currently.icon);
 		
 		// Update hourly data and icons
-		for (let i = 1; i < 11; i++) {
+		for (let i = 1; i < 13; i++) {
 			document.getElementById('hourtime' + i).innerHTML = getTime(data.hourly.data[i].time);
 			document.getElementById('hourtemp' + i).innerHTML = Math.round(data.hourly.data[i].temperature) + '°';
 			icons.add(document.getElementById('houricon' + i), data.hourly.data[i].icon);
@@ -236,11 +238,9 @@ function updateHeader(city) {
 // Create a Google Map for the baselayer of the radar
 function initMap(position) {
 
-	let imageArray = [];
-
 	let map = new google.maps.Map(document.getElementById('map'), {
 		center: position,
-		zoom: 10,
+		zoom: 9,
 		disableDefaultUI: true,
 		mapTypeId: 'terrain'
 	});
@@ -250,7 +250,7 @@ function initMap(position) {
 		map: map
 	});
 
-	tileNEX = new google.maps.ImageMapType ({
+	let radar = new google.maps.ImageMapType ({
 		getTileUrl: function(tile, zoom) {
 			return 'https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/' + zoom + '/' + tile.x + '/' + tile.y + '.png?' + (new Date()).getTime();
 		},
@@ -260,5 +260,5 @@ function initMap(position) {
 		isPng: true
 	});
 
-	map.overlayMapTypes.setAt('1', tileNEX);
+	map.overlayMapTypes.setAt('1', radar);
 }
