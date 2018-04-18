@@ -27,12 +27,12 @@ function findCoords(position) {
 		getWeather(lat, long);
 		initMap(mapPosition);
 		updateHeader(city);
-	});
 
-	// Remove splashscreen if it is still visible
-	if (document.getElementById("splashscreen")) {
-		removeSplash();
-	}
+		// Remove splashscreen if it is still visible
+		if (document.getElementById("splashscreen")) {
+			removeSplash();
+		}
+	});
 }
 
 // Implement Google Autocomplete and find weather based on selection
@@ -84,9 +84,11 @@ function getWeather(lat, long) {
 			document.getElementById('hourlysummary').style.paddingBottom = '12px';
 		} else if (data.hourly.summary.length > 100) {
 			document.getElementById('hourlysummary').style.fontSize = '15pt';
-			document.getElementById('hourlysummary').style.paddingBottom = '12px';
+			document.getElementById('hourlysummary').style.paddingBottom = '13px';
 		} else if (data.hourly.summary.length > 71) {
 			document.getElementById('hourlysummary').style.paddingBottom = '10px';
+		} else {
+			document.getElementById('hourlysummary').style.paddingBottom = '30px';
 		}
 
 		// Update HTML to reflect retrieved weather data
