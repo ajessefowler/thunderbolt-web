@@ -29,7 +29,7 @@ function findCoords(position) {
 		updateHeader(city);
 
 		// Remove splashscreen if it is still visible
-		if (document.getElementById("splashscreen")) {
+		if (!splashRemoved) {
 			removeSplash();
 		}
 	});
@@ -45,29 +45,31 @@ function searchLocation() {
 		let place = this.getPlace();
 		let lat = place.geometry.location.lat();
 		let long = place.geometry.location.lng();
-		let mapPosition = {lat: lat, lng: long};
 		let city = place.address_components[3].long_name;
 		getWeather(lat, long);
-		initMap(mapPosition);
+		initMap({ lat: lat, lng: long });
 		updateHeader(city);
 	});
 
 	// Autocomplete and listener for splashscreen search bar
-	let splashcomplete = new google.maps.places.Autocomplete(document.querySelector('#splashsearch'));
+	var splashcomplete = new google.maps.places.Autocomplete(document.querySelector('#splashsearch'));
 	google.maps.event.addListener(splashcomplete, 'place_changed', function() {
-		var splashPlace = this.getPlace();
-		var splashLat = splashPlace.geometry.location.lat();
-		var splashLong = splashPlace.geometry.location.lng();
-		var splashCity = splashPlace.address_components[3].long_name;
+		let splashPlace = this.getPlace();
 	});
 
 	// Trying to get search field to only send results on click of search button
 	$('#splashsearchbutton').click(function() {
 		console.log('fired');
-		console.log(splashPlace);
+		let splashPlace = splashcomplete.getPlace();
+		let splashLat = splashPlace.geometry.location.lat();
+		let splashLong = splashPlace.geometry.location.lng();
+		let splashCity = splashPlace.address_components[3].long_name;
 		getWeather(splashLat, splashLong);
-		updateHeader(splahCity);
-		removeSplash();
+		initMap({ lat: splashLat, lng: splashLong });
+		updateHeader(splashCity);
+		if (!splashRemoved) {
+			removeSplash();
+		}
 	});
 }
 
@@ -81,14 +83,8 @@ function getWeather(lat, long) {
 		// Change font size of hourly summary if content is too long
 		if (data.hourly.summary.length > 110) {
 			document.getElementById('hourlysummary').style.fontSize = '14pt';
-			document.getElementById('hourlysummary').style.paddingBottom = '12px';
 		} else if (data.hourly.summary.length > 100) {
 			document.getElementById('hourlysummary').style.fontSize = '15pt';
-			document.getElementById('hourlysummary').style.paddingBottom = '13px';
-		} else if (data.hourly.summary.length > 71) {
-			document.getElementById('hourlysummary').style.paddingBottom = '10px';
-		} else {
-			document.getElementById('hourlysummary').style.paddingBottom = '30px';
 		}
 
 		// Update HTML to reflect retrieved weather data
@@ -234,7 +230,6 @@ function locationError() {
 // Update current header to reflect selected location
 function updateHeader(city) {
 	document.getElementById('currentheader').innerHTML = 'Currently in ' + city;
-	$('#faveicon').fadeIn();
 }
 
 // Create a Google Map for the baselayer of the radar
