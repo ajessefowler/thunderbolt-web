@@ -97,7 +97,7 @@ function getWeather(lat, long) {
 		$('#sunrise').html('<strong>Sunrise:</strong> ' + getTime(data.daily.data[0].sunriseTime));
 		$('#sunset').html('<strong>Sunset:</strong> ' + getTime(data.daily.data[0].sunsetTime));
 		$('#chanceprecip').html('<strong>Precipitation:</strong> ' + Math.round(data.currently.precipProbability * 100) + '%');
-		//$('#hourlysummary').html(data.hourly.summary);
+		$('#hourlysummary').html(data.hourly.summary);
 		$('#dailysummary').html(data.daily.summary);
 
 		// Load Skycons and add the icon for current condition to the page
@@ -244,7 +244,7 @@ function initMap(position) {
 	let marker = new google.maps.Marker({
 		position: position,
 		map: map,
-		icon: 'img/mapmarker.png'
+		icon: 'img/mapmarker.svg'
 	});
 
 	let radar = new google.maps.ImageMapType ({
