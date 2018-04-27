@@ -9,7 +9,7 @@ header {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #455A64;
+	background: #455A64;
 	width: 100%;
 	height: 50px;
 	margin: 0;
@@ -61,7 +61,7 @@ h3 {
 .menuheader > h2 {
 	padding-top: 3px;
 	padding-left: 10px;
-	font-size: 14pt;
+	font-size: 16pt;
 }
 
 .currentdetails {
@@ -85,8 +85,9 @@ h3 {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	flex: 1;
 	width: 85%;
-	padding: 11px 12px;
+	padding: 0 12px;
 	border-top: 1px #CFD8DC solid;
 }
 
@@ -104,7 +105,7 @@ h3 {
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	margin-top: 15px;
+	margin-top: 20px;
 	padding: 0 5px 10px 5px;
 	width: 14.3%;
 }
@@ -294,9 +295,9 @@ h3 {
 	position: fixed;
 	top: 0;
 	bottom: 0;
-	left: -240px;
+	left: -300px;
 	width: 240px;
-	background-color: #535353;
+	background-color: #6d6d6d;
 	box-shadow: 2px 0px 5px #3f3f3f;
 	z-index: 12;
 }
@@ -368,7 +369,6 @@ h3 {
 
 #maincontainer {
 	display: grid;
-	opacity: 0;
 	width: 90%;
 	grid-template-rows: 400px 380px 670px;
 	grid-template-columns: 2fr 1fr;
@@ -383,6 +383,11 @@ h3 {
 	background-color: white;
 	box-shadow: 0px 2px 5px #313131;
 	border-radius: 5px 5px 3px 3px;
+}
+
+#currently {
+	position: relative;
+	top: 1000px;
 }
 
 #currently > :last-child {
@@ -431,6 +436,8 @@ h3 {
 }
 
 #hourly {
+	position: relative;
+	top: 1000px;
 	grid-column: 2 / span 2;
 	grid-row: 1 / span 2;
 }
@@ -448,14 +455,20 @@ h3 {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding: 0px 25px 10px 25px;
-	height: 584px;
+	padding: 0 25px;
+	height: 687px;
 }
 
 #hourlysummary {
 	color: #000000;
 	font-size: 16pt;
 	text-align: center;
+	padding: 0 15px;
+}
+
+#daily {
+	position: relative;
+	top: 1000px;
 }
 
 #dailysummary {
@@ -476,6 +489,8 @@ h3 {
 }
 
 #radar {
+	position: relative;
+	top: 1000px;
 	grid-column: 1 / span 3;
 }
 
@@ -484,14 +499,43 @@ h3 {
 	border-radius: 0 0 3px 3px;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
 
 	.hour {
 		flex-direction: column;
 		justify-content: center;
+		align-items: center;
 		width: 95%;
-		padding: 11px 12px 10px 12px;
-		border-top: 1px #CFD8DC solid;
+		padding: 0px 12px 10px 12px;
+		max-height: 150px;
+	}
+
+	.hour > p {
+		font-size: 12pt;
+	}
+
+	.hourlytime {
+		padding: 10px 0;
+	}
+
+	.houricon {
+		padding: 20px 0;
+	}
+
+	#splashsearchdiv {
+		width: 110%;
+	}
+
+	#splashlocate {
+		width: 68%;
+		margin: 0;
+	}
+	#splashlocbutton {
+		margin-right: 30px;
+	}
+
+	#splashsearchbutton {
+		margin-left: 30px;
 	}
 
 	#logolbl {
@@ -505,7 +549,7 @@ h3 {
 	#maincontainer {
 		display: grid;
 		width: 95%;
-		grid-template-rows: 400px 320px 320px 300px;
+		grid-template-rows: 400px 320px 385px 420px;
 		grid-template-columns: 100%;
 		grid-row-gap: 24px;
 		margin-right: auto;
@@ -513,8 +557,16 @@ h3 {
 		padding: 70px 20px 23px 20px;
 	}
 
+	#currentcontent {
+		margin-left: 25px;
+	}
+
 	#currently {
 		grid-row: 1 / span 1;
+	}
+
+	#icon {
+		height: 110px;
 	}
 
 	#hourly {
@@ -523,24 +575,50 @@ h3 {
 		height: 320px;
 	}
 
+	#hourlyheader {
+		padding-left: 30px;
+		justify-content: flex-start;
+	}
+
 	#hourlycontent {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
 		padding: 20px 25px 25px 25px;
-		height: 340px;
+		height: 150px;
 	}
 
 	#daily {
 		grid-column: 1 / span 1;
 		grid-row: 3 / span 3;
-		height: 320px;
+		height: 385px;
 	}
 
 	#radar {
 		grid-column: 1 / span 1;
 		grid-row: 4 / span 4;
+		height: 440px;
+	}
+
+	#map {
+		height: 400px;
+	}
+
+	#day6 {
+		display: none;
+	}
+
+	#day7 {
+		display: none;
+	}
+
+	#hour7 {
+		display: none;
+	}
+
+	#hour8 {
+		display: none;
 	}
 
 	#hour9 {

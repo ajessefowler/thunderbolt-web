@@ -57,9 +57,8 @@ function searchLocation() {
 		let splashPlace = this.getPlace();
 	});
 
-	// Trying to get search field to only send results on click of search button
-	$('#splashsearchbutton').click(function() {
-		console.log('fired');
+	// Finds weather at location in search box on click of search button
+	$(document).on('click', '#splashsearchbutton', function() {
 		let splashPlace = splashcomplete.getPlace();
 		let splashLat = splashPlace.geometry.location.lat();
 		let splashLong = splashPlace.geometry.location.lng();
@@ -98,7 +97,7 @@ function getWeather(lat, long) {
 		$('#sunrise').html('<strong>Sunrise:</strong> ' + getTime(data.daily.data[0].sunriseTime));
 		$('#sunset').html('<strong>Sunset:</strong> ' + getTime(data.daily.data[0].sunsetTime));
 		$('#chanceprecip').html('<strong>Precipitation:</strong> ' + Math.round(data.currently.precipProbability * 100) + '%');
-		$('#hourlysummary').html(data.hourly.summary);
+		//$('#hourlysummary').html(data.hourly.summary);
 		$('#dailysummary').html(data.daily.summary);
 
 		// Load Skycons and add the icon for current condition to the page
@@ -244,7 +243,8 @@ function initMap(position) {
 
 	let marker = new google.maps.Marker({
 		position: position,
-		map: map
+		map: map,
+		icon: 'img/mapmarker.png'
 	});
 
 	let radar = new google.maps.ImageMapType ({

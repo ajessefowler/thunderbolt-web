@@ -16,18 +16,14 @@ $(function() {
 // Slide menu in and out
 $(function() {
 
-	$('#menu').on('click', '#menubutton', function() {
+	$(document).on('click', '#menubutton', function() {
 		$('#menu').velocity({ left: 0 }), { duration: 180, easing: 'spring' };
 	});
 
-/*	$('#menubutton').on('click', function() {
-		$('#menu').velocity({ left: 0 }), { duration: 180, easing: 'spring' };
-	});*/
-
-	$('#closemenu').click(function() {
-		$('#menu').velocity({ left: -240 }), { duration: 180, easing: 'spring' };
+	$(document).on('click', '#closemenu', function() {
+		$('#menu').velocity({ left: -300 }), { duration: 180, easing: 'spring' };
 	});
-})
+});
 
 // Hides splashscreen and re-enables scrolling
 function removeSplash() {
@@ -35,17 +31,23 @@ function removeSplash() {
 		document.getElementById('splashsearchdiv').parentNode.removeChild(document.getElementById('splashsearchdiv'));
 	}, 400);
 	$('#splashsearchdiv')
-		.velocity({ top: -8 }, { duration: 100, easing: 'spring'})
-		.velocity({ top: 500 }, { duration: 200, easing: 'spring'});
+		.velocity({ top: -8 }, { duration: 100, easing: 'spring' })
+		.velocity({ top: 500 }, { duration: 200, easing: 'spring' });
 	$('#splashheader').velocity("fadeOut", { delay: 200, duration: 250 });
-	$('#maincontainer').velocity("fadeIn", { delay: 700, duration: 400 });
-	document.querySelector('header')
-		.velocity({ top: 0 }, { delay: 700, duration: 400, easing: 'spring'})
-	$('body').delay(600).css('overflow','auto');
 	splashRemoved = true;
+	addContent();
 }
 
-// Animates the border radii and shadows on focus and blur
+function addContent() {
+	$('#currently').velocity({ top: 0 }, { delay: 900, duration: 500, easing: 'spring' });
+	$('#hourly').velocity({ top: 0 }, { delay: 1100, duration: 500, easing: 'spring' });
+	$('#daily').velocity({ top: 0 }, { delay: 1300, duration: 500, easing: 'spring' });
+	$('#radar').velocity({ top: 0 }, { delay: 1500, duration: 500, easing: 'spring' });
+	document.querySelector('header').velocity({ top: 0 }, { delay: 600, duration: 300, easing: 'spring'});
+	setTimeout(function(){ $('body').css('overflow','auto'); }, 2000);
+}
+
+// Animates the border radii and shadows on focus and blur. Each corner radius must be animated separately.
 $(function() {
 	$('#autocomplete').focus(function() {
 		$('#searchbox').velocity({
