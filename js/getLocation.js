@@ -100,6 +100,9 @@ function getWeather(lat, long) {
 		$('#hourlysummary').html(data.hourly.summary);
 		$('#dailysummary').html(data.daily.summary);
 
+		// Resize the hourly content based on the height of the hourly summary
+		resizeHourly();
+
 		// Load Skycons and add the icon for current condition to the page
 		let icons = new Skycons({'color': '#000000'}),
      	list  = ['clear-day', 'clear-night', 'partly-cloudy-day', 'partly-cloudy-night', 'cloudy', 'rain', 'sleet', 'snow', 'wind', 'fog'], i;

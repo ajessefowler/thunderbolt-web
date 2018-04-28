@@ -89,3 +89,11 @@ $(function() {
 		$('#splashlocate').css('box-shadow', '0px 0px 7px #666666 inset');
 	});
 });
+
+// Calculates height of hourly content based on hourly summary
+function resizeHourly() {
+	let hourlyHeight = 750 - document.getElementById('hourlyheader').clientHeight;
+	document.getElementById('hourlycontent').style.height = hourlyHeight + 'px';
+}
+
+window.addEventListener('resize', resizeHourly);
