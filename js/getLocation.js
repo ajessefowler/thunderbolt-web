@@ -54,6 +54,7 @@ function searchLocation() {
 	// Autocomplete and listener for splashscreen search bar
 	var splashcomplete = new google.maps.places.Autocomplete(document.querySelector('#splashsearch'));
 	google.maps.event.addListener(splashcomplete, 'place_changed', function() {
+		document.getElementById('splashcomplete').blur();
 		let splashPlace = this.getPlace();
 	});
 
@@ -82,7 +83,7 @@ function getWeather(lat, long) {
 		// Change font size of hourly summary if content is too long
 		if (data.hourly.summary.length > 110) {
 			document.getElementById('hourlysummary').style.fontSize = '14pt';
-		} else if (data.hourly.summary.length > 100) {
+		} else if (data.hourly.summary.length > 70) {
 			document.getElementById('hourlysummary').style.fontSize = '15pt';
 		}
 
@@ -232,6 +233,7 @@ function locationError() {
 // Update current header to reflect selected location
 function updateHeader(city) {
 	document.getElementById('currentheader').innerHTML = 'Currently in ' + city;
+	document.getElementById('faveicon').style.display = 'block';
 }
 
 // Create a Google Map for the baselayer of the radar

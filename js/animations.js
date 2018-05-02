@@ -7,21 +7,39 @@ var splashRemoved = false;
 // Animate the splash screen on first load
 $(function() {
 	splashRemoved = false;
-	$('#splashheader').velocity('fadeIn', { delay: 400, duration: 700 });
+	$('#splashheader').velocity('fadeIn', { delay: 200, duration: 1000 });
 	$('#splashsearchdiv')
-		.velocity({ top: -8 }, { delay: 750, duration: 270, easing: 'spring'})
+		.velocity({ top: -8 }, { delay: 1000, duration: 270, easing: 'spring'})
 		.velocity({ top: 0}, {delay: 0, duration: 100, easing: 'spring'});
+});
+
+// Slides settings menu in and out
+$(function() {
+	let settingsOpen = false;
+	$(document).on('click', '#settingsbtn', function() {
+		if (!settingsOpen) {
+			$('#settingspanel').velocity({ bottom: 104 }, { duration: 150, easing: 'spring' });
+			settingsOpen = true;
+		} else {
+			$('#settingspanel').velocity({ bottom: 47 }, { duration: 150, easing: 'spring' });
+			settingsOpen = false;
+		}
+	});
+})
+
+$(function() {
+
 });
 
 // Slide menu in and out
 $(function() {
 
 	$(document).on('click', '#menubutton', function() {
-		$('#menu').velocity({ left: 0 }), { duration: 180, easing: 'spring' };
+		$('#menu').velocity({ left: 0 }, { duration: 370, easing: 'spring' });
 	});
 
 	$(document).on('click', '#closemenu', function() {
-		$('#menu').velocity({ left: -300 }), { duration: 180, easing: 'spring' };
+		$('#menu').velocity({ left: -400 }, { duration: 370, easing: 'spring' });
 	});
 });
 
@@ -96,4 +114,5 @@ function resizeHourly() {
 	document.getElementById('hourlycontent').style.height = hourlyHeight + 'px';
 }
 
+// Resizes hourly content whenever window is resized to maintain proper look
 window.addEventListener('resize', resizeHourly);

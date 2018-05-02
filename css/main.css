@@ -71,6 +71,57 @@ h3 {
 	text-align: center;
 }
 
+.settings {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	bottom: 47px;
+	width: 85%;
+	height: 50px;
+	padding: 0 6px;
+	border-radius: 3px;
+	background-color: #718792; 
+	box-shadow: 0px 1px 5px #424242;
+	z-index: 5;
+}
+
+.settings > h2 {
+	font-size: 15pt;
+	color: #ffffff;
+	margin-right: auto;
+	padding-left: 8px;
+}
+
+.switch {
+	width: 30px;
+	height: 14px;
+	background-color: #718792;
+	border-radius: 7px;
+	box-shadow: inset 0 0 3px #3f3f3f;
+	margin: 0 12px;
+}
+
+.switch:hover {
+	cursor: pointer;
+}
+
+.slider {
+	height: 18px;
+	width: 18px;
+	border-radius: 9px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 7px #252525;
+	position: relative;
+	top: -2px;
+}
+
+.settingstext {
+	color: #ffffff;
+	font-size: 12pt;
+}
+
 .currentdetails {
 	display: flex;
 	flex-direction: row;
@@ -141,8 +192,7 @@ h3 {
 }
 
 .splashtext {
-	padding-left: 30px;
-	padding-right: 30px;
+	padding: 0 30px;
 	text-align: center;
 	color: #3a3a3a;
 }
@@ -198,7 +248,7 @@ h3 {
 #splashheader > h2 {
 	padding-bottom: 40px;
 	color: #000000;
-	border-bottom: 1px solid rgb(0, 0, 0);
+	border-bottom: 1px solid #455A64;
 }
 
 #splashlocbutton {
@@ -300,38 +350,108 @@ h3 {
 
 #menu {
 	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	top: 0;
 	bottom: 0;
-	left: -300px;
-	width: 280px;
+	left: -400px;
+	width: 300px;
+	padding-top: 62px;
 	background-color: #ffffff;
-	box-shadow: 2px 0px 5px #3f3f3f;
+	box-shadow: 1px 0px 4px #202020;
 	z-index: 12;
 }
 
-#menufooter {
-	color: #000000;
-	font-size: 11pt;
+#menuheader {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background-color: #718792;
+	height: 100px;
 	width: 100%;
-	text-align: center;
 	position: absolute;
-	padding-top: 6px;
-	margin-bottom: 0;
+	top: 0;
+	box-shadow: 0 1px 4px 0px rgb(77, 77, 77);
+}
+
+#favoriteslabel {
+	font-size: 16pt;
+	position: absolute;
+	left: 18px;
+	bottom: 10px;
+}
+
+#settingspanel {
+	background-color: #455A64;
+	z-index: 4;
+}
+
+#leftswitch {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 60%;
+	width: 43%;
+	margin-left: auto;
+	padding-right: 10px;
+}
+
+#rightswitch {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 60%;
+	width: 57%;
+	margin-right: auto;
+	padding-left: 10px;
+	border-left: 1px solid #718792;
+}
+
+#settingsbtn {
+	color: #ffffff;
+	padding: 8px;
+	margin-left: auto;
+}
+
+#settingsbtn:hover {
+	cursor: pointer;
+}
+
+#attr {
+	color: #000000;
+	position: absolute;
 	bottom: 0;
-	padding-bottom: 6px;
+	font-size: 10pt;
 }
 
 #closemenu {
 	color: #ffffff;
-	position: relative;
-	margin-left: auto;
-	margin-right: 7px;
-	padding: 6px 8px;
+	position: absolute;
+	right: 10px;
+	bottom: 6px;
+	padding: 8px;
 }
 
 #closemenu:hover {
 	cursor: pointer;
 	color:rgb(241, 117, 115);
+}
+
+#alerticon {
+	display: none;
+	color: #EF5350;
+	position: relative;
+	left: 17px;
+	padding: 8px;
+}
+
+#alerticon:hover {
+	color: #D32F2F;
+	cursor: pointer;
 }
 
 #location {
@@ -447,8 +567,9 @@ h3 {
 	display: none;
 	color: #ffffff;
 	margin-left: auto;
-	padding: 6px 6px 6px 6px;
+	padding: 8px;
 	margin-right: 6px;
+	font-size: 14pt;
 }
 
 #faveicon:hover {
@@ -527,6 +648,10 @@ h3 {
 
 @media only screen and (max-width: 1000px) {
 
+	.splashtext {
+		padding: 0;
+	}
+
 	.hour {
 		flex-direction: column;
 		justify-content: center;
@@ -548,8 +673,12 @@ h3 {
 		padding: 20px 0;
 	}
 
+	#splashscreen {
+		margin: 120px 40px 500px 40px;
+	}
+
 	#splashsearchdiv {
-		width: 110%;
+		width: 100%;
 	}
 
 	#splashlocate {

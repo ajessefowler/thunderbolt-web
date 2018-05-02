@@ -40,19 +40,44 @@
 			<input id="autocomplete" placeholder="Search for a location" type="text">
 		</div>
 
+		<i class="fas fa-circle fa-sm" id="alerticon"></i>
 		<img src="img/logo.svg" id="logo">
 	</header>
 
 	<div id="menu">
-		<div class="menuheader">
-			<h2>Alerts</h2>
+		<div id="menuheader">
+			<h2 id="favoriteslabel">Favorites</h2>
 			<i class="fas fa-angle-left fa-lg" id="closemenu"></i>
 		</div>
-		<p class="menutext">There are no alerts for your area.</p>
-		<div class="menuheader">
-			<h2>Favorites</h2>
+
+		<div id="favorites">
+
 		</div>
-		<p id="menufooter">Powered by Dark Sky</p>
+
+		<div class="settings">
+			<h2>Settings</h2>
+			<i class="fas fa-angle-up fa-lg" id="settingsbtn"></i>
+		</div>
+
+		<div class="settings" id="settingspanel">
+			<div id="leftswitch">
+				<p class="settingstext">°F</p>
+				<div class="switch">
+					<div class="slider" id="leftslider">
+					</div>
+				</div>
+				<p class="settingstext">°C</p>
+			</div>
+			<div id="rightswitch">
+				<p class="settingstext">mph</p>
+				<div class="switch">
+					<div class="slider" id="rightslider">
+					</div>
+				</div>
+				<p class="settingstext">km/h</p>
+			</div>
+		</div>
+		<p id="attr">Powered by Dark Sky</p>
 	</div>
 
 	<div id="maincontainer" class="grid-container">
@@ -60,6 +85,7 @@
 		<div id="currently">
 			<div class="sectionheader">
 				<h2 id="currentheader">Currently</h2>
+				<i class="fas fa-heart fa-lg" id="faveicon"></i>
 			</div>
 			<div id="currentcontent"> 
 				<canvas id="icon"></canvas>
