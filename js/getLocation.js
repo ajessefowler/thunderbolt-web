@@ -38,8 +38,10 @@ function findCoords(position) {
 // Implement Google Autocomplete and find weather based on selection
 function searchLocation() {
 
+	let countryRestriction = { componentRestrictions: { country: 'us' }};
+
 	// Autocomplete and listener for main search bar
-	let autocomplete = new google.maps.places.Autocomplete(document.querySelector('#autocomplete'));
+	let autocomplete = new google.maps.places.Autocomplete(document.querySelector('#autocomplete'), countryRestriction);
 	google.maps.event.addListener(autocomplete, 'place_changed', function() {
 		document.getElementById('autocomplete').blur();
 		let place = this.getPlace();
@@ -52,7 +54,7 @@ function searchLocation() {
 	});
 
 	// Autocomplete and listener for splashscreen search bar
-	var splashcomplete = new google.maps.places.Autocomplete(document.querySelector('#splashsearch'));
+	var splashcomplete = new google.maps.places.Autocomplete(document.querySelector('#splashsearch'), countryRestriction);
 	google.maps.event.addListener(splashcomplete, 'place_changed', function() {
 		document.getElementById('splashcomplete').blur();
 		let splashPlace = this.getPlace();

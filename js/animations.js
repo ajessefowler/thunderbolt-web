@@ -27,8 +27,30 @@ $(function() {
 	});
 })
 
+// Animates settings slider and updates units on page
 $(function() {
+	let rightSwitchPos = 0;
+	let leftSwitchPos = 0;
 
+	$(document).on('click', '#rightswitch', function() {
+		if (rightSwitchPos === 0) {
+			rightSwitchPos = 1;
+			$('#rightslider').velocity({ left: 13 }, { duration: 150, easing: 'spring' });
+		} else {
+			rightSwitchPos = 0;
+			$('#rightslider').velocity({ left: 0 }, { duration: 150, easing: 'spring' });
+		}
+	});
+
+	$(document).on('click', '#leftswitch', function() {
+		if (leftSwitchPos === 0) {
+			leftSwitchPos = 1;
+			$('#leftslider').velocity({ left: 13 }, { duration: 150, easing: 'spring' });
+		} else {
+			leftSwitchPos = 0;
+			$('#leftslider').velocity({ left: 0 }, { duration: 150, easing: 'spring' });
+		}
+	});
 });
 
 // Slide menu in and out
