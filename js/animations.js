@@ -18,10 +18,10 @@ $(function() {
 	let settingsOpen = false;
 	$(document).on('click', '#settingsbtn', function() {
 		if (!settingsOpen) {
-			$('#settingspanel').velocity({ bottom: 104 }, { duration: 150, easing: 'spring' });
+			$('#settingspanel').velocity({ bottom: 84 }, { duration: 150, easing: 'spring' });
 			settingsOpen = true;
 		} else {
-			$('#settingspanel').velocity({ bottom: 47 }, { duration: 150, easing: 'spring' });
+			$('#settingspanel').velocity({ bottom: 36 }, { duration: 150, easing: 'spring' });
 			settingsOpen = false;
 		}
 	});
