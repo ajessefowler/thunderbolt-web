@@ -25,7 +25,7 @@
 			<i class="fas fa-times fa-2x" id="splashexit" onclick="removeSplash()"></i>
 		</div>
 		<div id="splashsearchdiv">
-			<i class="fas fa-location-arrow fa-2x" id="splashlocbutton" onclick="getLocation()"></i>
+			<i class="fas fa-location-arrow fa-2x" id="splashlocbutton" onclick="findLocation()"></i>
 			<div id="splashlocate">
 					<input id="splashsearch" placeholder="Search for a location" type="text">
 			</div>
@@ -35,7 +35,7 @@
 
 	<header>
 		<i class="fas fa-bars fa-lg" id="menubutton"></i>
-		<i class="fas fa-location-arrow fa-lg" id="location" onclick="getLocation()"></i>
+		<i class="fas fa-location-arrow fa-lg" id="location" onclick="findLocation()"></i>
 
 		<div id="searchbox">
 			<input id="autocomplete" placeholder="Search for a location" type="text">
@@ -52,7 +52,12 @@
 		</div>
 
 		<div id="favorites">
-			<h2 id="favoritesguide">Click the heart next to your city's name to favorite your location.</h2>
+
+			<!--<div id="favorite1" class="favorite">
+				<h2>Columbus, Ohio</h2>
+			</div>-->
+
+			<!--<h2 id="favoritesguide">Click the heart next to your city's name to favorite your location.</h2>-->
 		</div>
 
 		<div class="settings">

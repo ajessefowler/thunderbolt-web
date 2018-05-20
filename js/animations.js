@@ -67,15 +67,17 @@ $(function() {
 
 // Hides splashscreen and re-enables scrolling
 function removeSplash() {
-	setTimeout(function() {
-		document.getElementById('splashsearchdiv').parentNode.removeChild(document.getElementById('splashsearchdiv'));
-	}, 400);
-	$('#splashsearchdiv')
-		.velocity({ top: -8 }, { duration: 100, easing: 'spring' })
-		.velocity({ top: 500 }, { duration: 200, easing: 'spring' });
-	$('#splashheader').velocity("fadeOut", { delay: 200, duration: 250 });
-	splashRemoved = true;
-	addContent();
+	if (!splashRemoved) {
+		setTimeout(function() {
+			document.getElementById('splashsearchdiv').parentNode.removeChild(document.getElementById('splashsearchdiv'));
+		}, 400);
+		$('#splashsearchdiv')
+			.velocity({ top: -8 }, { duration: 100, easing: 'spring' })
+			.velocity({ top: 500 }, { duration: 200, easing: 'spring' });
+		$('#splashheader').velocity("fadeOut", { delay: 200, duration: 250 });
+		splashRemoved = true;
+		addContent();
+	}
 }
 
 function addContent() {
