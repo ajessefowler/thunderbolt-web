@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="js/velocity.min.js"></script>
 	<script type="text/javascript" src="js/skycons.js"></script>
 	<script type="text/javascript" src="js/animations.js"></script>
+	<script type="text/javascript" src="js/favorite.js"></script>
 	<script type="text/javascript" src="js/getWeather.js"></script>
 	<script type="text/javascript" src="js/getLocation.js"></script>
 	<meta charset="UTF-8">
@@ -25,11 +26,13 @@
 			<i class="fas fa-times fa-2x" id="splashexit" onclick="removeSplash()"></i>
 		</div>
 		<div id="splashsearchdiv">
-			<i class="fas fa-location-arrow fa-2x" id="splashlocbutton" onclick="findLocation()"></i>
+			<div id="splashlocbutton">
+				<i class="fas fa-location-arrow fa-lg" id="splashlocicon" onclick="findLocation()"></i>
+			</div>
 			<div id="splashlocate">
 					<input id="splashsearch" placeholder="Search for a location" type="text">
+					<i class="fas fa-search fa-lg" id="splashsearchbutton"></i>
 			</div>
-			<i class="fas fa-search fa-2x" id="splashsearchbutton"></i>
 		</div>
 	</div>
 
@@ -45,19 +48,18 @@
 		<img src="img/logo.svg" id="logo">
 	</header>
 
+	<div id="menushade">
+	</div>
+
 	<div id="menu">
+
 		<div id="menuheader">
 			<h2 id="favoriteslabel">Favorite Locations</h2>
 			<i class="fas fa-angle-left fa-lg" id="closemenu"></i>
 		</div>
 
 		<div id="favorites">
-
-			<!--<div id="favorite1" class="favorite">
-				<h2>Columbus, Ohio</h2>
-			</div>-->
-
-			<!--<h2 id="favoritesguide">Click the heart next to your city's name to favorite your location.</h2>-->
+			<h2 id="favoritesguide">Click the heart next to your city's name to favorite your location.</h2>
 		</div>
 
 		<div class="settings">

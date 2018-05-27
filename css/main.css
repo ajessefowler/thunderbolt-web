@@ -73,8 +73,11 @@ h3 {
 
 .favorite {
 	width: 100%;
-	padding: 20px 0;
+	padding: 15px 0;
 	border-bottom: 1px solid #CFD8DC;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .favorite:hover {
@@ -82,9 +85,19 @@ h3 {
 }
 
 .favorite > h2{
-	text-align: center;
-	font-size: 16pt;
-	color: #000000;
+	padding-right: 95px;
+	font-size: 13pt;
+	color: #1d1d1d;
+}
+
+.removefave {
+	margin-left: 38px;
+	padding: 8px;
+	color: #525252;
+}
+
+.removefave:hover {
+	color: #EF5350;
 }
 
 .settings {
@@ -100,7 +113,7 @@ h3 {
 	border-radius: 3px;
 	background-color: #455A64; 
 	box-shadow: 0px 1px 5px #424242;
-	z-index: 5;
+	z-index: 18;
 }
 
 .settings > h2 {
@@ -202,9 +215,9 @@ h3 {
 }
 
 .pac-container {
-	margin-top: 7px !important;
+	margin-top: 9px !important;
 	padding: 0 7px 7px 7px !important;
-	border-radius: 3px !important;
+	border-radius: 5px !important;
 }
 
 .splashtext {
@@ -264,17 +277,27 @@ h3 {
 #splashheader > h2 {
 	padding-bottom: 40px;
 	color: #000000;
-	border-bottom: 1px solid #455A64;
 }
 
 #splashlocbutton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 45px;
+	width: 45px;
+	background-color: #455A64;
+	margin-right: 10px;
+	border-radius: 5px;
+	box-shadow: 0px 1px 3px #424242;
+}
+
+#splashlocicon {
 	color: #ffffff;
-	padding: 8px;
-	margin-right: 35px;
 }
 
 #splashlocbutton:hover {
-	color: #B0BEC5;
+	background-color: rgb(40, 65, 77);
+	box-shadow: 0px 1px 5px #424242;
 	cursor: pointer;
 }
 
@@ -283,14 +306,11 @@ h3 {
 	justify-content: center;
 	align-items: center;
 	flex-direction: row;
-	margin-top: 53px;
 	padding: 20px 0 20px 0;
 	width: 800px;
 	min-height: 30px;
 	z-index: 10;
-	background-color: #455A64;
-	border-radius: 5px;
-	box-shadow: 0px 2px 5px #2b2b2b;
+	background-color: rgba(0, 0, 0, 0);
 	position: relative;
 	top: 500px;
 }
@@ -300,12 +320,12 @@ h3 {
 	justify-content: center;
 	align-items: center;
 	width: 550px;
-	height: 37px;
+	height: 45px;
 	margin: 0 20px 0 20px;
 	background-color: #ffffff;
-	border-radius: 25px;
-	box-shadow: 0px 0px 5px #666666 inset;
 	z-index: 12;
+	border-radius: 5px;
+	box-shadow: 0px 1px 3px #424242;
 }
 
 #splashsearch {
@@ -318,7 +338,7 @@ h3 {
 	font-family: 'Nunito', sans-serif;
 	letter-spacing: 1px;
 	font-size: 14pt;
-	padding: 0 18px 4px 18px;
+	padding: 0 45px 4px 18px;
 }
 
 #splashsearch:focus {
@@ -326,10 +346,11 @@ h3 {
 }
 
 #splashsearchbutton {
-	color: #ffffff;
+	color: #363636;
 	transform: scaleX(-1);
 	padding: 8px;
-	margin-left: 35px;
+	position: absolute;
+	margin-left: 507px;
 }
 
 #splashsearchbutton:hover {
@@ -351,6 +372,16 @@ h3 {
 	cursor: pointer;
 }
 
+#menushade {
+	display: none;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: rgba(0, 0, 0, .5);
+	z-index: 15;
+}
+
 #menubutton {
 	color: #ffffff;
 	position: fixed;
@@ -369,14 +400,15 @@ h3 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	top: 0;
-	bottom: 0;
+	top: 20px;
+	bottom: 20px;
 	left: -400px;
 	width: 300px;
 	padding-top: 62px;
 	background-color: #718792;
 	box-shadow: 1px 0px 4px #202020;
-	z-index: 12;
+	z-index: 16;
+	border-radius: 7px;
 }
 
 #menuheader {
@@ -389,6 +421,8 @@ h3 {
 	width: 100%;
 	position: absolute;
 	top: 0;
+	border-radius: 7px 7px 0 0;
+	z-index: 17;
 }
 
 #favoriteslabel {
@@ -425,7 +459,7 @@ h3 {
 }
 
 #settingspanel {
-	z-index: 4;
+	z-index: 17;
 }
 
 #leftswitch {
@@ -735,12 +769,9 @@ h3 {
 		width: 68%;
 		margin: 0;
 	}
+
 	#splashlocbutton {
 		margin-right: 30px;
-	}
-
-	#splashsearchbutton {
-		margin-left: 30px;
 	}
 
 	#splashexit {
