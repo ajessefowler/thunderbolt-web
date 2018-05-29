@@ -64,10 +64,11 @@ function updateFavoritesMenu() {
 		div = document.createElement('div');
 		icon = document.createElement('i');
 		div.className = 'favorite';
-		icon.className = 'fas fa-times fa-sm removefave';
+		icon.className = 'material-icons removefave';
 		div.setAttribute('id', ('favorite' + i));
 		icon.setAttribute('id', ('removebtn' + i));
-		div.innerHTML = '<h2>' + favorites[i].city + ', ' + favorites[i].state + '</h2>';
+        div.innerHTML = '<p>' + favorites[i].city + ', ' + favorites[i].state + '</p>';
+        icon.innerHTML = 'delete_outline';
 		document.getElementById('favorites').appendChild(div);
 		document.getElementById('favorite' + i).appendChild(icon);
 	}

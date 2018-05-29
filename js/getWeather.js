@@ -48,7 +48,8 @@ function getWeather(lat, long, isFavoriteLocation = false) {
 				let i, e;
 
   				for (i = list.length; i--;) {
-					let weatherType = list[i], elements = document.getElementsByClassName(weatherType);
+					let weatherType = list[i];
+					let elements = document.getElementsByClassName(weatherType);
 
 					for (e = elements.length; e--;) {
    						icons.set(elements[e], weatherType);

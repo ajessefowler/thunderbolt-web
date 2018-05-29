@@ -1,0 +1,108 @@
+/*
+    Splash screen slide
+*/
+@keyframes splashButtonsIn {
+    0% { top: 500px; }
+    60% { top: -18px; }
+    100% { top: -10px; }
+}
+
+@keyframes splashButtonsOut { 
+    0% { top: -10px; }
+    40% { top: -18px; }
+    100% { top: 500px; }
+}
+
+/*
+    Splash screen fade
+*/
+@keyframes splashFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes splashFadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/*
+    Menu and search buttons
+*/
+@keyframes buttonsIn {
+    from { transform: translateY(-40px); }
+    to { transform: translateY(40px); }
+}
+
+/*
+    Main content
+*/
+@keyframes contentIn {
+    from { transform: translateY(1000px); }
+    to { transform: translateY(0px); }
+}
+
+/* 
+    Shade for menu background 
+*/
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 0.9; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 0.9; }
+    to { opacity: 0; }
+}
+
+/* 
+    Menu slide 
+*/
+@keyframes menuIn {
+    from { transform: translateX(-400px); }
+    to { transform: translateX(87px); }
+}
+
+@keyframes menuOut {
+    from { transform: translateX(87px); }
+    to { transform: translateX(-400px); }
+}
+
+/* 
+    Search menu 
+*/
+@keyframes searchIn {
+    from { transform: scaleX(1) translateY(40px); }
+    to { transform: scaleX(0) translateY(40px); }
+}
+
+@keyframes searchOut {
+    from { transform: scaleX(0) translateY(40px); }
+    to { transform: scaleX(1) translateY(40px); }
+}
+
+/* 
+    Settings 
+*/
+@keyframes settingsIn {
+    from { transform: translateY(275px); }
+    to { transform: translateY(325px); }
+}
+
+@keyframes settingsOut {
+    from { transform: translateY(325px); }
+    to { transform: translateY(275px); }
+}
+
+/* 
+    Settings button rotate 
+*/
+@keyframes settingsBtnIn {
+    from { transform: rotate(-180deg); }
+    to { transform: rotate(0deg); }
+}
+
+@keyframes settingsBtnOut {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-180deg); }
+}

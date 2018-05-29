@@ -35,9 +35,7 @@ function findCoords(position) {
 		}
 	};
 
-	request.onerror = function() {
-		console.log('Connection error.');
-	};
+	request.onerror = () => { console.log('Connection error.'); };
 
 	request.send();
 }
@@ -91,11 +89,8 @@ function updatePageLocation(currentLocation) {
 	const faveIcon = document.getElementById('faveicon');
 	faveIcon.style.display = 'block';
 	faveIcon.style.color = '#FFFFFF';
-	faveIcon.onclick = function() {
-		currentLocation.favorite();
-	}
+	faveIcon.onclick = () => { currentLocation.favorite(); };
 
-	document.getElementById('autocomplete').value = currentLocation.city + ', ' + currentLocation.state;
 	document.getElementById('currentheader').innerHTML = 'Currently in ' + currentLocation.city;
 	getWeather(currentLocation.lat, currentLocation.long);
 	initMap({ lat: currentLocation.lat, lng: currentLocation.long });

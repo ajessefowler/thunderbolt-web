@@ -9,13 +9,9 @@ header {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: #455A64;
+	background: rga(0, 0, 0, 0);
 	width: 100%;
-	height: 50px;
-	margin: 0;
 	position: fixed;
-	top: -70px;
-	box-shadow: 0px 2px 4px #424242;
 	z-index: 10;
 }
 
@@ -29,7 +25,7 @@ h1 {
 	font-family: 'Nunito', sans-serif;
 	color: #ffffff;
 	font-weight: 400;
-	font-size: 32pt;
+	font-size: 26pt;
 }
 
 h2 {
@@ -73,19 +69,23 @@ h3 {
 
 .favorite {
 	width: 100%;
+	height: 40px;
+	margin: 5px 0;
 	padding: 15px 0;
-	border-bottom: 1px solid #CFD8DC;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	background-color: #ffffff;
+	border-radius: 5px;
+	box-shadow: 0px 1px 5px #111111;
 }
 
 .favorite:hover {
 	cursor: pointer;
 }
 
-.favorite > h2{
-	padding-right: 95px;
+.favorite > p {
+	padding: 0 12px;
 	font-size: 13pt;
 	color: #1d1d1d;
 }
@@ -106,13 +106,13 @@ h3 {
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	bottom: 36px;
+	transform: translateY(325px);
 	width: 85%;
 	height: 40px;
 	padding: 0 6px;
-	border-radius: 3px;
+	border-radius: 5px;
 	background-color: #455A64; 
-	box-shadow: 0px 1px 5px #424242;
+	box-shadow: 0px 1px 4px #111111;
 	z-index: 18;
 }
 
@@ -265,18 +265,20 @@ h3 {
 	padding-top: 200px;
 }
 
-#splashheader {
-	opacity: 0.0;
-}
-
 #splashheader > h1 {
 	margin-bottom: 10px;
 	color: #000000;
+	opacity: 0;
+	animation: splashFadeIn 1s ease .2s forwards;
 }
 
 #splashheader > h2 {
+	font-size: 13pt;
+	font-family: 'Merriweather', serif;
 	padding-bottom: 40px;
-	color: #000000;
+	color: #313131;
+	opacity: 0;
+	animation: splashFadeIn 1s ease 1.2s forwards;
 }
 
 #splashlocbutton {
@@ -289,10 +291,14 @@ h3 {
 	margin-right: 10px;
 	border-radius: 5px;
 	box-shadow: 0px 1px 3px #424242;
+	position: relative;
+	top: 500px;
+	animation: splashButtonsIn .4s ease 2.5s forwards;
 }
 
 #splashlocicon {
 	color: #ffffff;
+	font-size: 16pt;
 }
 
 #splashlocbutton:hover {
@@ -312,7 +318,7 @@ h3 {
 	z-index: 10;
 	background-color: rgba(0, 0, 0, 0);
 	position: relative;
-	top: 500px;
+	top: -10px;
 }
 
 #splashlocate {
@@ -326,6 +332,9 @@ h3 {
 	z-index: 12;
 	border-radius: 5px;
 	box-shadow: 0px 1px 3px #424242;
+	position: relative;
+	top: 500px;
+	animation: splashButtonsIn .4s ease 2.6s forwards;
 }
 
 #splashsearch {
@@ -351,20 +360,22 @@ h3 {
 	padding: 8px;
 	position: absolute;
 	margin-left: 507px;
+	font-size: 21pt;
 }
 
 #splashsearchbutton:hover {
-	color: #B0BEC5;
+	color: rgb(116, 116, 116);
 	cursor: pointer;
 }
 
 #splashexit {
 	color: #EF5350;
 	position: absolute;
-	top: -120px;
-	right: -35px;
+	top: -130px;
+	right: -45px;
 	padding: 6px;
 	z-index: 10;
+	font-size: 27pt;
 }
 
 #splashexit:hover {
@@ -372,27 +383,55 @@ h3 {
 	cursor: pointer;
 }
 
-#menushade {
-	display: none;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	width: 100%;
-	background-color: rgba(0, 0, 0, .5);
-	z-index: 15;
-}
-
 #menubutton {
-	color: #ffffff;
 	position: fixed;
-	left: 8px;
-	padding: 10px;
-	z-index: 3;
+	transform: translateY(-40px);
+	left: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #455A64;
+	box-shadow: 0px 1px 3px #424242;
+	border-radius: 5px;
+	height: 40px;
+	width: 40px;
 }
 
 #menubutton:hover {
-	color: #B0BEC5;
+	background-color: rgb(40, 65, 77);
+	box-shadow: 0px 1px 5px #424242;
 	cursor: pointer;
+}
+
+#menuicon {
+	color: #ffffff;
+	font-size: 19pt;
+	display: block;
+}
+
+#searchbutton {
+	position: fixed;
+	transform: translateY(-40px);
+	right: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #455A64;
+	box-shadow: 0px 1px 3px #424242;
+	border-radius: 5px;
+	height: 40px;
+	width: 40px;
+}
+
+#searchbutton:hover {
+	background-color: rgb(40, 65, 77);
+	box-shadow: 0px 1px 5px #424242;
+	cursor: pointer;
+}
+
+#searchicon {
+	color: #ffffff;
+	font-size: 19pt;
 }
 
 #menu {
@@ -400,36 +439,54 @@ h3 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	top: 20px;
+	top: 30px;
 	bottom: 20px;
-	left: -400px;
+	transform: translateX(-400px);
 	width: 300px;
 	padding-top: 62px;
-	background-color: #718792;
-	box-shadow: 1px 0px 4px #202020;
-	z-index: 16;
-	border-radius: 7px;
+	background-color: rgba(0, 0, 0, 0);
+	z-index: 51;
+}
+
+#menushade {
+	display: none;
+	position: fixed;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #000000;
+	opacity: 0;
+	z-index: 50;
 }
 
 #menuheader {
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
-	background-color: #718792;
+	background-color: rgba(0, 0, 0, 0);
 	height: 85px;
 	width: 100%;
 	position: absolute;
-	top: 0;
-	border-radius: 7px 7px 0 0;
+	top: 10px;
 	z-index: 17;
 }
 
+#closemenu {
+	font-size: 19pt;
+	padding: 8px;
+	color: #EF5350;
+	margin-left: 163px;
+}
+
+#closemenu:hover {
+	color: rgb(196, 55, 52);
+	cursor: pointer;
+}
+
 #favoriteslabel {
-	font-size: 16pt;
-	position: absolute;
-	left: 18px;
-	bottom: 10px;
+	font-size: 20pt;
+	position: relative;
 }
 
 #favorites {
@@ -441,21 +498,8 @@ h3 {
 	width: 100%;
 	top: 85px;
 	bottom: 92px;
-	background-color: #ffffff;
-	box-shadow: inset 0 -5px 10px -6px rgb(35, 35, 35), inset 0 5px 9px -6px rgb(35, 35, 35);
+	background-color: rgba(0, 0, 0, 0);
 	overflow: auto;
-}
-
-#favoritesguide {
-	position: relative;
-	top: 45%;
-}
-
-#favorites > h2 {
-	color: #000000;
-	font-size: 13pt;
-	text-align: center;
-	padding: 0 56px;
 }
 
 #settingspanel {
@@ -487,8 +531,11 @@ h3 {
 
 #settingsbtn {
 	color: #ffffff;
+	font-size: 18pt;
 	padding: 8px;
-	margin-left: auto;
+	margin-left: 0px;
+	position: relative;
+	left: 8px;
 }
 
 #settingsbtn:hover {
@@ -505,51 +552,46 @@ h3 {
 	font-size: 10pt;
 }
 
-#closemenu {
-	color: #ffffff;
-	position: absolute;
-	right: 10px;
-	bottom: 6px;
-	padding: 8px;
+#locationbutton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 40px;
+	width: 40px;
+	background-color: #455A64;
+	box-shadow: 0px 1px 3px #424242;
+	border-radius: 5px;
+	margin-right: 15px;
 }
 
-#closemenu:hover {
-	cursor: pointer;
-	color:rgb(241, 117, 115);
-}
-
-#alerticon {
-	color: #9CCC65;
-	position: relative;
-	left: 17px;
-	padding: 8px;
-}
-
-#alerticon:hover {
+#locationbutton:hover {
+	background-color: rgb(40, 65, 77);
+	box-shadow: 0px 1px 5px #424242;
 	cursor: pointer;
 }
 
 #location {
-	padding: 8px;
-	margin: 17px;
 	color: #ffffff;
-	font-size: 15pt;
+	font-size: 16pt;
 }
 
-#location:hover {
-	color: #B0BEC5;
-	cursor: pointer;
+#searchbar {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	right: 70px;
+	margin-right: 15px;
+	transform: scaleX(0) translateY(40px);
 }
 
 #searchbox {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	width: 370px;
-	height: 30px;
+	height: 40px;
 	background-color: #ffffff;
-	border-radius: 15px;
-	box-shadow: 0px 0px 3px #666666 inset;
+	border-radius: 5px;
+	box-shadow: 0px 1px 3px #424242;
 }
 
 #autocomplete {
@@ -560,8 +602,8 @@ h3 {
 	font-size: 12pt;
 	font-family: 'Nunito', sans-serif;
 	letter-spacing: 1px;
-	padding-right: 10px;
-	padding-left: 10px;
+	position: relative;
+	top: 8px;
 }
 
 #autocomplete:focus {
@@ -591,6 +633,7 @@ h3 {
 #maincontainer {
 	display: grid;
 	width: 90%;
+	max-width: 1200px;
 	grid-template-rows: 400px 380px 670px;
 	grid-template-columns: 2fr 1fr;
 	grid-row-gap: 24px;
@@ -608,7 +651,7 @@ h3 {
 
 #currently {
 	position: relative;
-	top: 1000px;
+	transform: translateY(1000px);
 }
 
 #currently > :last-child {
@@ -644,7 +687,7 @@ h3 {
 	margin-left: auto;
 	padding: 8px;
 	margin-right: 6px;
-	font-size: 14pt;
+	font-size: 15pt;
 }
 
 #faveicon:hover {
@@ -659,7 +702,7 @@ h3 {
 
 #hourly {
 	position: relative;
-	top: 1000px;
+	transform: translateY(1000px);
 	grid-column: 2 / span 2;
 	grid-row: 1 / span 2;
 }
@@ -682,20 +725,22 @@ h3 {
 }
 
 #hourlysummary {
-	color: #000000;
-	font-size: 16pt;
+	color: #313131;
+	font-family: 'Merriweather', serif;
+	font-size: 12pt;
 	text-align: center;
 	padding: 0 15px;
 }
 
 #daily {
 	position: relative;
-	top: 1000px;
+	transform: translateY(1000px);
 }
 
 #dailysummary {
-	color: #000000;
-	font-size: 16pt;
+	color: #313131;
+	font-family: 'Merriweather', serif;
+	font-size: 12pt;
 	text-align: left;
 	padding: 15px 10px 15px 10px;
 	margin: 0 25px 6px 25px;
@@ -712,7 +757,7 @@ h3 {
 
 #radar {
 	position: relative;
-	top: 1000px;
+	transform: translateY(1000px);
 	grid-column: 1 / span 3;
 }
 

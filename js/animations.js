@@ -4,35 +4,28 @@
 
 var splashRemoved = false;
 
-// Animate the splash screen on first load
-$(function() {
-	splashRemoved = false;
-	$('#splashheader').velocity('fadeIn', { delay: 200, duration: 1000 });
-	$('#splashsearchdiv')
-		.velocity({ top: -8 }, { delay: 1000, duration: 270, easing: 'spring'})
-		.velocity({ top: 0}, {delay: 0, duration: 100, easing: 'spring'});
-});
-
 // Slides settings menu in and out
-$(function() {
+(function() {
 	let settingsOpen = false;
-	$(document).on('click', '#settingsbtn', function() {
+	document.getElementById('settingsbtn').addEventListener('click', function() {
 		if (!settingsOpen) {
-			$('#settingspanel').velocity({ bottom: 84 }, { duration: 150, easing: 'spring' });
+			document.getElementById('settingspanel').style.animation = 'settingsOut .4s ease forwards';
+			document.getElementById('settingsbtn').style.animation = 'settingsBtnOut .4s ease forwards';
 			settingsOpen = true;
 		} else {
-			$('#settingspanel').velocity({ bottom: 36 }, { duration: 150, easing: 'spring' });
+			document.getElementById('settingspanel').style.animation = 'settingsIn .4s ease forwards';
+			document.getElementById('settingsbtn').style.animation = 'settingsBtnIn .4s ease forwards';
 			settingsOpen = false;
 		}
 	});
-})
+})();
 
 // Animates settings slider and updates units on page
-$(function() {
+(function() {
 	let rightSwitchPos = 0;
 	let leftSwitchPos = 0;
 
-	$(document).on('click', '#rightswitch', function() {
+	document.getElementById('rightswitch').addEventListener('click', function() {
 		if (rightSwitchPos === 0) {
 			rightSwitchPos = 1;
 			$('#rightslider').velocity({ left: 13 }, { duration: 150, easing: 'spring' });
@@ -42,7 +35,7 @@ $(function() {
 		}
 	});
 
-	$(document).on('click', '#leftswitch', function() {
+	document.getElementById('leftswitch').addEventListener('click', function() {
 		if (leftSwitchPos === 0) {
 			leftSwitchPos = 1;
 			$('#leftslider').velocity({ left: 13 }, { duration: 150, easing: 'spring' });
@@ -51,66 +44,65 @@ $(function() {
 			$('#leftslider').velocity({ left: 0 }, { duration: 150, easing: 'spring' });
 		}
 	});
-});
+})();
 
 // Slide menu in and out
-$(function() {
+(function() {
 
-	$(document).on('click', '#menubutton', function() {
-		$('#menu').velocity({ left: 10 }, { duration: 370, easing: 'spring' });
-		document.getElementById('menushade').style.display = '';
+	document.getElementById('menubutton').addEventListener('click', function() {
+		document.getElementById('menu').style.animation = 'menuIn .4s ease forwards';
+		document.getElementById('menushade').style.display = 'block';
+		document.getElementById('menushade').style.animation = 'fadeIn .5s ease forwards';
 	});
 
-	$(document).on('click', '#closemenu', function() {
-		$('#menu').velocity({ left: -400 }, { duration: 370, easing: 'spring' });
-		document.getElementById('menushade').style.display = 'none';
+	document.getElementById('closemenu').addEventListener('click', function() {
+		document.getElementById('menu').style.animation = 'menuOut .4s ease forwards';
+		document.getElementById('menushade').style.animation = 'fadeOut .5s ease forwards';
+		setTimeout(function(){ document.getElementById('menushade').style.display = 'none'; }, 500);
 	});
-});
+})();
 
 // Hides splashscreen and re-enables scrolling
 function removeSplash() {
 	if (!splashRemoved) {
 		setTimeout(function() {
 			document.getElementById('splashsearchdiv').parentNode.removeChild(document.getElementById('splashsearchdiv'));
-		}, 400);
-		$('#splashsearchdiv')
-			.velocity({ top: -8 }, { duration: 100, easing: 'spring' })
-			.velocity({ top: 500 }, { duration: 200, easing: 'spring' });
-		$('#splashheader').velocity("fadeOut", { delay: 200, duration: 250 });
+			addContent();
+		}, 600);
+		document.getElementById('splashlocbutton').style.animation = 'splashButtonsOut .4s ease forwards';
+		document.getElementById('splashlocate').style.animation = 'splashButtonsOut .4s ease forwards';
+		document.getElementById('splashexit').style.animation = 'splashFadeOut .6s ease forwards';
+		document.getElementById('splashtexthead').style.animation = 'splashFadeOut .6s ease forwards';
+		document.getElementById('splashtextsub').style.animation = 'splashFadeOut .6s ease forwards';
 		splashRemoved = true;
-		addContent();
 	}
 }
 
 function addContent() {
-	$('#currently').velocity({ top: 0 }, { delay: 900, duration: 500, easing: 'spring' });
-	$('#hourly').velocity({ top: 0 }, { delay: 1100, duration: 500, easing: 'spring' });
-	$('#daily').velocity({ top: 0 }, { delay: 1300, duration: 500, easing: 'spring' });
-	$('#radar').velocity({ top: 0 }, { delay: 1500, duration: 500, easing: 'spring' });
-	document.querySelector('header').velocity({ top: 0 }, { delay: 600, duration: 300, easing: 'spring'});
+	document.getElementById('menubutton').style.animation = 'buttonsIn .4s ease .3s forwards';
+	document.getElementById('searchbutton').style.animation = 'buttonsIn .4s ease .4s forwards';
+	document.getElementById('currently').style.animation = 'contentIn .5s ease .5s forwards';
+	document.getElementById('hourly').style.animation = 'contentIn .5s ease .7s forwards';
+	document.getElementById('daily').style.animation = 'contentIn .5s ease .9s forwards';
+	document.getElementById('radar').style.animation = 'contentIn .5s ease 1.1s forwards';
 	setTimeout(function(){ $('body').css('overflow','auto'); }, 2000);
 }
 
+// Slide search bar in and out
+(function() {
+	document.getElementById('searchbutton').addEventListener('click', function() {
+		document.getElementById('searchbar').style.animation = 'searchOut .5s ease forwards';
+	});
+})();
+
 // Animates the border radii and shadows on focus and blur. Each corner radius must be animated separately.
-$(function() {
+(function() {
 	$('#autocomplete').focus(function() {
-		$('#searchbox').velocity({
-			borderTopLeftRadius: 3,
-			borderTopRightRadius: 3,
-			borderBottomLeftRadius: 3,
-			borderBottomRightRadius: 3
-		}, { duration: 200 });
-		$('#searchbox').css('box-shadow', '0px 1px 6px #212121');
+		$('#searchbox').css('box-shadow', '0px 1px 5px #424242');
 	});
 
 	$('#autocomplete').blur(function() {
-		$('#searchbox').velocity({
-			borderTopLeftRadius: 15,
-			borderTopRightRadius: 15,
-			borderBottomLeftRadius: 15,
-			borderBottomRightRadius: 15
-		}, { duration: 200 });
-		$('#searchbox').css('box-shadow', '0px 0px 3px #666666 inset');
+		$('#searchbox').css('box-shadow', '0px 1px 3px #424242');
 	});
 
 	$('#splashsearch').focus(function() {
@@ -120,7 +112,7 @@ $(function() {
 	$('#splashsearch').blur(function() {
 		$('#splashlocate').css('box-shadow', '0px 1px 3px #424242');
 	});
-});
+})();
 
 // Calculates height of hourly content based on hourly summary
 function resizeHourly() {
