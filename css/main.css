@@ -795,12 +795,12 @@ h3 {
 	}
 
 	.hour {
-		flex-direction: column;
+		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		width: 95%;
-		padding: 0px 12px 10px 12px;
-		max-height: 150px;
+		width: 85%;
+		padding: 25px 10px 25px 10px;
+		margin: 0 80px;
 	}
 
 	.hour > p {
@@ -808,11 +808,11 @@ h3 {
 	}
 
 	.hourlytime {
-		padding: 10px 0;
+		padding: 0 55px 0 0;
 	}
 
-	.houricon {
-		padding: 20px 0;
+	.hourlytemp {
+		padding: 0 0 0 55px;
 	}
 
 	#splashscreen {
@@ -852,7 +852,7 @@ h3 {
 
 	#splashexit {
 		top: -70px;
-		right: -10px;
+		right: 0;
 	}
 
 	#autocomplete {
@@ -866,14 +866,15 @@ h3 {
 	}
 
 	#maincontainer {
-		display: grid;
+		display: block;
 		width: 95%;
-		grid-template-rows: 400px 320px 385px 420px;
-		grid-template-columns: 100%;
-		grid-row-gap: 24px;
 		margin-right: auto;
 		margin-left: auto;
-		padding: 70px 20px 23px 20px;
+		padding: 70px 10px 23px 10px;
+	}
+
+	#maincontainer > div {
+		margin: 0 0 15px 0;
 	}
 
 	#currentcontent {
@@ -900,7 +901,7 @@ h3 {
 	#hourly {
 		grid-column: 1 / span 1;
 		grid-row: 2 / span 2;
-		height: 320px;
+		height: 460px;
 	}
 
 	#hourlyheader {
@@ -910,7 +911,7 @@ h3 {
 
 	#hourlycontent {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
 		padding: 0 15px 25px 15px;
@@ -927,6 +928,7 @@ h3 {
 		grid-column: 1 / span 1;
 		grid-row: 4 / span 4;
 		height: 440px;
+		margin: 0 !important;
 	}
 
 	#map {
@@ -938,14 +940,6 @@ h3 {
 	}
 
 	#day7 {
-		display: none;
-	}
-
-	#hour6 {
-		display: none;
-	}
-
-	#hour7 {
 		display: none;
 	}
 
