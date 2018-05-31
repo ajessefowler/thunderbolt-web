@@ -791,7 +791,11 @@ h3 {
 	}
 
 	.currentdetails {
-		padding-top: 15px;
+		padding: 10px 15px 0 15px;
+	}
+
+	.currentdetails > p {
+		font-size: 11pt;
 	}
 
 	.hour {
@@ -813,6 +817,15 @@ h3 {
 
 	.hourlytemp {
 		padding: 0 0 0 55px;
+	}
+
+	.day {
+		margin-top: 12px;
+		padding: 0 8px 10px 5px;
+	}
+
+	.day > p {
+		font-size: 13pt;
 	}
 
 	#splashscreen {
@@ -852,7 +865,15 @@ h3 {
 
 	#splashexit {
 		top: -70px;
-		right: 0;
+		right: -5px;
+	}
+
+	#menubutton {
+		left: 15px;
+	}
+
+	#searchbutton {
+		right: 15px;
 	}
 
 	#autocomplete {
@@ -909,6 +930,10 @@ h3 {
 		justify-content: flex-start;
 	}
 
+	#hourlyheader > h2 {
+		font-size: 14pt;
+	}
+
 	#hourlycontent {
 		display: flex;
 		flex-direction: column;
@@ -921,7 +946,19 @@ h3 {
 	#daily {
 		grid-column: 1 / span 1;
 		grid-row: 3 / span 3;
-		height: 385px;
+		height: 365px;
+	}
+
+	#daily > h2 {
+		font-size: 14pt;
+	}
+
+	#dailyforecast {
+		padding: 0 10px 10px;
+	}
+
+	#dailyforecast > div:nth-of-type(5) {
+		border: none;
 	}
 
 	#radar {
