@@ -77,7 +77,7 @@ function searchLocation() {
 		const splashLong = splashPlace.geometry.location.lng();
 		const splashCity = splashPlace.address_components[3].long_name;
 		const splashState = splashPlace.address_components[5].long_name;
-		const currentLocation = new Location(city, state, lat, long);
+		const currentLocation = new Location(splashCity, splashState, splashLat, splashLong);
 
 		updatePageLocation(currentLocation);
 		removeSplash();
@@ -88,10 +88,10 @@ function searchLocation() {
 function updatePageLocation(currentLocation) {
 	const faveIcon = document.getElementById('faveicon');
 	faveIcon.style.display = 'block';
-	faveIcon.style.color = '#FFFFFF';
+	faveIcon.style.color = '#000000';
 	faveIcon.onclick = () => { currentLocation.favorite(); };
 
-	document.getElementById('currentheader').innerHTML = 'Currently in ' + currentLocation.city;
+	document.getElementById('currentheader').innerHTML = currentLocation.city + ', ' + currentLocation.state;
 	getWeather(currentLocation.lat, currentLocation.long);
 	initMap({ lat: currentLocation.lat, lng: currentLocation.long });
 }

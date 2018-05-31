@@ -106,7 +106,6 @@ h3 {
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	transform: translateY(325px);
 	width: 85%;
 	height: 40px;
 	padding: 0 6px;
@@ -232,13 +231,14 @@ h3 {
 	align-items: center;
 	width: 100%;
 	height: 40px;
-	background-color: #718792;
+	background-color: rgba(0, 0, 0, 0);
 	border-top-right-radius: 3px;
 	border-top-left-radius: 3px;
 }
 
 .sectionheader > h2 {
 	padding-left: 15px;
+	color: #000000;
 }
 
 .high {
@@ -273,8 +273,7 @@ h3 {
 }
 
 #splashheader > h2 {
-	font-size: 13pt;
-	font-family: 'Merriweather', serif;
+	font-size: 15pt;
 	padding-bottom: 40px;
 	color: #313131;
 	opacity: 0;
@@ -288,7 +287,7 @@ h3 {
 	height: 45px;
 	width: 45px;
 	background-color: #455A64;
-	margin-right: 10px;
+	margin-right: 0;
 	border-radius: 5px;
 	box-shadow: 0px 1px 3px #424242;
 	position: relative;
@@ -347,7 +346,7 @@ h3 {
 	font-family: 'Nunito', sans-serif;
 	letter-spacing: 1px;
 	font-size: 14pt;
-	padding: 0 45px 4px 18px;
+	padding: 0 40px 4px 10px;
 }
 
 #splashsearch:focus {
@@ -358,9 +357,9 @@ h3 {
 	color: #363636;
 	transform: scaleX(-1);
 	padding: 8px;
-	position: absolute;
-	margin-left: 507px;
 	font-size: 21pt;
+	position: absolute;
+	left: 505px;
 }
 
 #splashsearchbutton:hover {
@@ -429,9 +428,31 @@ h3 {
 	cursor: pointer;
 }
 
+#closesearchbutton {
+	position: fixed;
+	transform: translateY(40px);
+	right: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #455A64;
+	box-shadow: 0px 1px 3px #424242;
+	border-radius: 5px;
+	height: 40px;
+	width: 40px;
+	color: #ffffff;
+}
+
+#closesearchbutton:hover {
+	background-color: rgb(40, 65, 77);
+	box-shadow: 0px 1px 5px #424242;
+	cursor: pointer;
+}
+
 #searchicon {
 	color: #ffffff;
 	font-size: 19pt;
+	transform: scaleX(-1);
 }
 
 #menu {
@@ -632,7 +653,7 @@ h3 {
 
 #maincontainer {
 	display: grid;
-	width: 90%;
+	width: 85%;
 	max-width: 1200px;
 	grid-template-rows: 400px 380px 670px;
 	grid-template-columns: 2fr 1fr;
@@ -683,7 +704,6 @@ h3 {
 
 #faveicon {
 	display: none;
-	color: #ffffff;
 	margin-left: auto;
 	padding: 8px;
 	margin-right: 6px;
@@ -725,9 +745,8 @@ h3 {
 }
 
 #hourlysummary {
-	color: #313131;
-	font-family: 'Merriweather', serif;
-	font-size: 12pt;
+	color: #000000;
+	font-size: 15pt;
 	text-align: center;
 	padding: 0 15px;
 }
@@ -738,9 +757,8 @@ h3 {
 }
 
 #dailysummary {
-	color: #313131;
-	font-family: 'Merriweather', serif;
-	font-size: 12pt;
+	color: #000000;
+	font-size: 15pt;
 	text-align: left;
 	padding: 15px 10px 15px 10px;
 	margin: 0 25px 6px 25px;
@@ -766,10 +784,14 @@ h3 {
 	border-radius: 0 0 3px 3px;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 800px) {
 
 	.splashtext {
 		padding: 0;
+	}
+
+	.currentdetails {
+		padding-top: 15px;
 	}
 
 	.hour {
@@ -797,26 +819,35 @@ h3 {
 		margin: 80px 20px 500px 20px;
 	}
 
+	#splashsearch {
+		width: 100%;
+		font-size: 12pt;
+	}
+
+	#splashsearchbutton {
+		left: 82%;
+	}
+
 	#splashsearchdiv {
 		width: 100%;
 	}
 
 	#splashheader > h1 {
-		font-size: 22pt;
+		font-size: 18pt;
 		padding-bottom: 14px;
 	}
 	
 	#splashheader > h2 {
-		font-size: 16pt;
+		font-size: 13pt;
 	}
 
 	#splashlocate {
-		width: 68%;
+		width: 80%;
 		margin: 0;
 	}
 
 	#splashlocbutton {
-		margin-right: 30px;
+		margin-right: 15px;
 	}
 
 	#splashexit {
@@ -824,8 +855,10 @@ h3 {
 		right: -10px;
 	}
 
-	#logo {
-		display: none;
+	#autocomplete {
+		width: 100%;
+		font-size: 12pt;
+		letter-spacing: initial;
 	}
 
 	#searchbox {
@@ -845,6 +878,15 @@ h3 {
 
 	#currentcontent {
 		margin-left: 25px;
+		padding-bottom: 20px;
+	}
+
+	#currentdescription > h1 {
+		font-size: 22pt;
+	}
+
+	#currentdescription > h2 {
+		font-size: 14pt;
 	}
 
 	#currently {
@@ -852,7 +894,7 @@ h3 {
 	}
 
 	#icon {
-		height: 110px;
+		height: 70px;
 	}
 
 	#hourly {
@@ -871,7 +913,7 @@ h3 {
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		padding: 20px 25px 25px 25px;
+		padding: 0 15px 25px 15px;
 		height: 150px;
 	}
 
@@ -896,6 +938,10 @@ h3 {
 	}
 
 	#day7 {
+		display: none;
+	}
+
+	#hour6 {
 		display: none;
 	}
 

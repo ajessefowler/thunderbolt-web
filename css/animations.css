@@ -47,11 +47,11 @@
 */
 @keyframes fadeIn {
     from { opacity: 0; }
-    to { opacity: 0.9; }
+    to { opacity: 0.93; }
 }
 
 @keyframes fadeOut {
-    from { opacity: 0.9; }
+    from { opacity: 0.93; }
     to { opacity: 0; }
 }
 
@@ -105,4 +105,19 @@
 @keyframes settingsBtnOut {
     from { transform: rotate(0deg); }
     to { transform: rotate(-180deg); }
+}
+
+@media only screen and (max-width: 800px) {
+    /* 
+     Menu slide 
+    */
+    @keyframes menuIn {
+        from { transform: translateX(-400px); }
+        to { transform: translateX(30px); }
+    }
+
+    @keyframes menuOut {
+        from { transform: translateX(30px); }
+        to { transform: translateX(-400px); }
+    }
 }

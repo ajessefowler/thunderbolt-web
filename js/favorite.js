@@ -25,7 +25,7 @@ class Location {
                 console.log(favoriteLocations);
              } else {
                 this.isFavorited = false;
-                document.getElementById('faveicon').style.color = '#FFFFFF';
+                document.getElementById('faveicon').style.color = '#000000';
                 for (let i = 0; i < favoriteLocations.length; ++i) {
                     if ((favoriteLocations[i].city === this.city) && (favoriteLocations[i].state === this.state)) {
                         favoriteLocations.splice(i, 1);

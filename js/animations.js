@@ -2,11 +2,15 @@
 	Animations for search boxes and splashscreen
 */
 
-var splashRemoved = false;
-
-// Slides settings menu in and out
 (function() {
 	let settingsOpen = false;
+	let searchOpen = false;
+	let rightSwitchPos = 0;
+	let leftSwitchPos = 0;
+	let closeDiv = document.createElement('div');
+	let searchDiv = document.createElement('div');
+
+	// Slides settings menu in and out
 	document.getElementById('settingsbtn').addEventListener('click', function() {
 		if (!settingsOpen) {
 			document.getElementById('settingspanel').style.animation = 'settingsOut .4s ease forwards';
@@ -18,13 +22,8 @@ var splashRemoved = false;
 			settingsOpen = false;
 		}
 	});
-})();
 
-// Animates settings slider and updates units on page
-(function() {
-	let rightSwitchPos = 0;
-	let leftSwitchPos = 0;
-
+	// Animates settings slider and updates units on page
 	document.getElementById('rightswitch').addEventListener('click', function() {
 		if (rightSwitchPos === 0) {
 			rightSwitchPos = 1;
@@ -44,11 +43,8 @@ var splashRemoved = false;
 			$('#leftslider').velocity({ left: 0 }, { duration: 150, easing: 'spring' });
 		}
 	});
-})();
 
-// Slide menu in and out
-(function() {
-
+	// Slide menu in and out
 	document.getElementById('menubutton').addEventListener('click', function() {
 		document.getElementById('menu').style.animation = 'menuIn .4s ease forwards';
 		document.getElementById('menushade').style.display = 'block';
@@ -60,10 +56,46 @@ var splashRemoved = false;
 		document.getElementById('menushade').style.animation = 'fadeOut .5s ease forwards';
 		setTimeout(function(){ document.getElementById('menushade').style.display = 'none'; }, 500);
 	});
+
+	// Create function to DRY these
+
+	document.getElementById('menushade').addEventListener('click', function() {
+		document.getElementById('menu').style.animation = 'menuOut .4s ease forwards';
+		document.getElementById('menushade').style.animation = 'fadeOut .5s ease forwards';
+		setTimeout(function(){ document.getElementById('menushade').style.display = 'none'; }, 500);
+	})
+
+	// Slide search bar in and out
+	closeDiv.className = 'material-icons';
+	closeDiv.setAttribute('id', 'closesearchbutton');
+	closeDiv.innerHTML = 'clear';
+	searchDiv.className = 'material-icons';
+	searchDiv.style.transform = 'translateY(40px) scaleX(-1)';
+	searchDiv.style.color = '#ffffff';
+	searchDiv.setAttribute('id', 'searchbutton');
+	searchDiv.innerHTML = 'search';
+
+	document.getElementById('searchbutton').addEventListener('click', function() {
+		document.getElementById('searchbar').style.animation = 'searchOut .5s ease forwards';
+		document.getElementById('searchbutton').parentNode.removeChild(document.getElementById('searchbutton'));
+		document.getElementById('header').appendChild(closeDiv);
+
+		document.getElementById('closesearchbutton').addEventListener('click', function() {
+			document.getElementById('searchbar').style.animation = 'searchIn .5s ease forwards';
+			document.getElementById('closesearchbutton').parentNode.removeChild(document.getElementById('closesearchbutton'));
+			document.getElementById('header').appendChild(searchDiv);
+			// Add event listener to open search
+		});
+	});
+
+	// Resizes hourly content whenever window is resized to maintain proper look
+	window.addEventListener('resize', resizeHourly);
 })();
 
 // Hides splashscreen and re-enables scrolling
 function removeSplash() {
+	let splashRemoved = false;
+
 	if (!splashRemoved) {
 		setTimeout(function() {
 			document.getElementById('splashsearchdiv').parentNode.removeChild(document.getElementById('splashsearchdiv'));
@@ -85,40 +117,15 @@ function addContent() {
 	document.getElementById('hourly').style.animation = 'contentIn .5s ease .7s forwards';
 	document.getElementById('daily').style.animation = 'contentIn .5s ease .9s forwards';
 	document.getElementById('radar').style.animation = 'contentIn .5s ease 1.1s forwards';
-	setTimeout(function(){ $('body').css('overflow','auto'); }, 2000);
+	setTimeout(function(){ $('body').css('overflow','auto'); }, 1600);
 }
-
-// Slide search bar in and out
-(function() {
-	document.getElementById('searchbutton').addEventListener('click', function() {
-		document.getElementById('searchbar').style.animation = 'searchOut .5s ease forwards';
-	});
-})();
-
-// Animates the border radii and shadows on focus and blur. Each corner radius must be animated separately.
-(function() {
-	$('#autocomplete').focus(function() {
-		$('#searchbox').css('box-shadow', '0px 1px 5px #424242');
-	});
-
-	$('#autocomplete').blur(function() {
-		$('#searchbox').css('box-shadow', '0px 1px 3px #424242');
-	});
-
-	$('#splashsearch').focus(function() {
-		$('#splashlocate').css('box-shadow', '0px 1px 5px #424242');
-	});
-
-	$('#splashsearch').blur(function() {
-		$('#splashlocate').css('box-shadow', '0px 1px 3px #424242');
-	});
-})();
 
 // Calculates height of hourly content based on hourly summary
 function resizeHourly() {
-	let hourlyHeight = 750 - document.getElementById('hourlyheader').clientHeight;
-	document.getElementById('hourlycontent').style.height = hourlyHeight + 'px';
+	if (window.innerWidth > 800) {
+		const hourlyHeight = 750 - document.getElementById('hourlyheader').clientHeight;
+		document.getElementById('hourlycontent').style.height = hourlyHeight + 'px';
+	} else {
+		document.getElementById('hourlycontent').style.height = '170px';
+	}
 }
-
-// Resizes hourly content whenever window is resized to maintain proper look
-window.addEventListener('resize', resizeHourly);
