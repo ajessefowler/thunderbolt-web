@@ -66,26 +66,16 @@
 	})
 
 	// Slide search bar in and out
-	closeDiv.className = 'material-icons';
-	closeDiv.setAttribute('id', 'closesearchbutton');
-	closeDiv.innerHTML = 'clear';
-	searchDiv.className = 'material-icons';
-	searchDiv.style.transform = 'translateY(40px) scaleX(-1)';
-	searchDiv.style.color = '#ffffff';
-	searchDiv.setAttribute('id', 'searchbutton');
-	searchDiv.innerHTML = 'search';
-
 	document.getElementById('searchbutton').addEventListener('click', function() {
-		document.getElementById('searchbar').style.animation = 'searchOut .5s ease forwards';
-		document.getElementById('searchbutton').parentNode.removeChild(document.getElementById('searchbutton'));
-		document.getElementById('header').appendChild(closeDiv);
-
-		document.getElementById('closesearchbutton').addEventListener('click', function() {
+		if (!searchOpen) {
+			searchOpen = true;
+			document.getElementById('searchbar').style.animation = 'searchOut .5s ease forwards';
+			document.getElementById('searchicon').innerHTML = 'clear';
+		} else {
+			searchOpen = false;
 			document.getElementById('searchbar').style.animation = 'searchIn .5s ease forwards';
-			document.getElementById('closesearchbutton').parentNode.removeChild(document.getElementById('closesearchbutton'));
-			document.getElementById('header').appendChild(searchDiv);
-			// Add event listener to open search
-		});
+			document.getElementById('searchicon').innerHTML = 'search';
+		}
 	});
 
 	// Resizes hourly content whenever window is resized to maintain proper look
