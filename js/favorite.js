@@ -20,7 +20,7 @@ class Location {
 
             if (!this.isFavorited) {
                 this.isFavorited = true;
-                document.getElementById('faveicon').style.animation = 'favorite .3s linear 2 forwards';
+                document.getElementById('faveicon').style.animation = 'favorite .2s linear 2 forwards';
                 favoriteLocations.push(this);
                 console.log(favoriteLocations);
              } else {

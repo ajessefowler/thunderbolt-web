@@ -16,13 +16,13 @@ header {
 }
 
 p {
-	font-family: 'Nunito', sans-serif;
+	font-family: 'Cantarell', sans-serif;
 	font-weight: 400;
 	font-size: 16pt;
 }
 
 h1 {
-	font-family: 'Nunito', sans-serif;
+	font-family: 'Fjalla One', sans-serif;
 	color: #ffffff;
 	font-weight: 400;
 	font-size: 26pt;
@@ -30,7 +30,7 @@ h1 {
 
 h2 {
 	margin: 0;
-	font-family: 'Nunito', sans-serif;
+	font-family: 'Cantarell', sans-serif;
 	color: #ffffff;
 	font-weight: 300;
 	font-size: 18pt;
@@ -162,8 +162,8 @@ h3 {
 
 .currentdetails > p {
 	font-size: 13pt;
-	padding-left: 10px;
-	padding-right: 10px;
+	padding-left: 8px;
+	padding-right: 8px;
 	margin-top: 8px;
 	margin-bottom: 8px;
 }
@@ -241,9 +241,10 @@ h3 {
 }
 
 .sectionheader > h2 {
-	padding-left: 0px;
+	padding-left: 5px;
 	color: #242424;
 	font-size: 22pt;
+	font-family: 'Fjalla One', sans-serif;
 }
 
 .high {
@@ -665,8 +666,12 @@ h3 {
 #maincontainer > div {
 	background-color: white;
 	box-shadow: 0px 2px 5px #313131;
-	border-radius: 5px 5px 3px 3px;
+	border-radius: 3px;
 	margin-top: 40px;
+}
+
+#maincontainer > div:first-child > .sectionheader > h2 {
+	font-size: 27pt;
 }
 
 #currently {
@@ -706,8 +711,9 @@ h3 {
 #faveicon {
 	display: none;
 	padding: 8px;
-	margin: 0 6px 0 10px;
+	margin: 0 3px;
 	font-size: 18pt;
+	transform: scaleY(1.1);
 }
 
 #faveicon:hover {
@@ -734,7 +740,7 @@ h3 {
 	padding-top: 15px;
 	padding-bottom: 15px;
 	position: relative;
-	top: -40px;
+	top: -36px;
 }
 
 #hourlycontent {
@@ -745,7 +751,7 @@ h3 {
 	padding: 0 25px;
 	height: 687px;
 	position: relative;
-	top: -40px;
+	top: -36px;
 }
 
 #hourlysummary {
@@ -785,6 +791,7 @@ h3 {
 	position: relative;
 	transform: translateY(1000px);
 	grid-column: 1 / span 3;
+	border-radius: 3px;
 }
 
 #map {
@@ -838,8 +845,8 @@ h3 {
 		font-size: 13pt;
 	}
 
-	.sectionheader > h2 {
-		padding-left: 5px; 
+	.dayicon {
+		height: 32px;
 	}
 
 	#splashscreen {
@@ -913,11 +920,11 @@ h3 {
 		width: 95%;
 		margin-right: auto;
 		margin-left: auto;
-		padding: 108px 10px 30px 10px;
+		padding: 110px 10px 30px 10px;
 	}
 
 	#maincontainer > div {
-		margin: 0 0 55px 0;
+		margin: 0 0 60px 0;
 	}
 
 	#currently {
@@ -953,8 +960,8 @@ h3 {
 	}
 
 	#hourlyheader {
-		padding-left: 30px;
-		justify-content: flex-start;
+		padding-left: 10px;
+		padding-right: 10px;
 	}
 
 	#hourlyheader > h2 {
@@ -978,6 +985,11 @@ h3 {
 
 	#daily > h2 {
 		font-size: 14pt;
+	}
+
+	#dailysummary {
+		margin-left: 15px;
+		padding-left: 5px;
 	}
 
 	#dailyforecast {

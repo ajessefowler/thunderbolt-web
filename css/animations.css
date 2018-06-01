@@ -112,30 +112,30 @@
 */
 @keyframes favorite {
     0% { 
-        transform: scale(1);
+        transform: scale(1) scaleY(1.1);
         color: #EF5350; 
        }
     50% { 
-          transform: scale(1.2);
+          transform: scale(1.2) scaleY(1.1);
           color: #EF5350; 
         }
     100% { 
-           transform: scale(1);
+           transform: scale(1) scaleY(1.1);
            color: #EF5350; 
          }
 }
 
 @keyframes unfavorite {
     0% { 
-        transform: scale(1);
+        transform: scale(1) scaleY(1.1);
         color: #EF5350; 
        }
     50% { 
-          transform: scale(1.2);
+          transform: scale(1.2) scaleY(1.1);
           color: #000000; 
         }
     100% { 
-           transform: scale(1);
+           transform: scale(1) scaleY(1.1);
            color: #000000; 
          }
 }
