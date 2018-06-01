@@ -72,13 +72,13 @@
     Search menu 
 */
 @keyframes searchIn {
-    from { transform: scaleX(1) translateY(30px); }
-    to { transform: scaleX(0) translateY(30px); }
+    from { transform: scaleX(1) translateY(40px); }
+    to { transform: scaleX(0) translateY(40px); }
 }
 
 @keyframes searchOut {
-    from { transform: scaleX(0) translateY(30px); }
-    to { transform: scaleX(1) translateY(30px); }
+    from { transform: scaleX(0) translateY(40px); }
+    to { transform: scaleX(1) translateY(40px); }
 }
 
 /* 
@@ -161,5 +161,18 @@
     @keyframes buttonsIn {
         from { transform: translateY(-40px); }
         to { transform: translateY(30px); }
+    }
+
+    /* 
+    Search menu 
+    */
+    @keyframes searchIn {
+        from { transform: scaleX(1) translateY(30px); }
+        to { transform: scaleX(0) translateY(30px); }
+    }
+
+    @keyframes searchOut {
+        from { transform: scaleX(0) translateY(30px); }
+        to { transform: scaleX(1) translateY(30px); }
     }
 }

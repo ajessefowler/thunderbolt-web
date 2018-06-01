@@ -609,7 +609,7 @@ h3 {
 	position: fixed;
 	right: 70px;
 	margin-right: 15px;
-	transform: scaleX(0) translateY(30px);
+	transform: scaleX(0) translateY(40px);
 }
 
 #searchbox {
@@ -894,6 +894,10 @@ h3 {
 		width: 100%;
 		font-size: 12pt;
 		letter-spacing: initial;
+	}
+
+	#searchbar {
+		transform: scaleX(0) translateY(30px);
 	}
 
 	#searchbox {
