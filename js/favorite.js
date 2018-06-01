@@ -20,12 +20,12 @@ class Location {
 
             if (!this.isFavorited) {
                 this.isFavorited = true;
-                document.getElementById('faveicon').style.color = '#EF5350';
+                document.getElementById('faveicon').style.animation = 'favorite .3s linear 2 forwards';
                 favoriteLocations.push(this);
                 console.log(favoriteLocations);
              } else {
                 this.isFavorited = false;
-                document.getElementById('faveicon').style.color = '#000000';
+                document.getElementById('faveicon').style.animation = 'unfavorite .2s linear forwards';
                 for (let i = 0; i < favoriteLocations.length; ++i) {
                     if ((favoriteLocations[i].city === this.city) && (favoriteLocations[i].state === this.state)) {
                         favoriteLocations.splice(i, 1);

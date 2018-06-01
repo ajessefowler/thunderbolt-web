@@ -72,13 +72,13 @@
     Search menu 
 */
 @keyframes searchIn {
-    from { transform: scaleX(1) translateY(40px); }
-    to { transform: scaleX(0) translateY(40px); }
+    from { transform: scaleX(1) translateY(30px); }
+    to { transform: scaleX(0) translateY(30px); }
 }
 
 @keyframes searchOut {
-    from { transform: scaleX(0) translateY(40px); }
-    to { transform: scaleX(1) translateY(40px); }
+    from { transform: scaleX(0) translateY(30px); }
+    to { transform: scaleX(1) translateY(30px); }
 }
 
 /* 
@@ -107,6 +107,39 @@
     to { transform: rotate(-180deg); }
 }
 
+/*
+    Favorite click
+*/
+@keyframes favorite {
+    0% { 
+        transform: scale(1);
+        color: #EF5350; 
+       }
+    50% { 
+          transform: scale(1.2);
+          color: #EF5350; 
+        }
+    100% { 
+           transform: scale(1);
+           color: #EF5350; 
+         }
+}
+
+@keyframes unfavorite {
+    0% { 
+        transform: scale(1);
+        color: #EF5350; 
+       }
+    50% { 
+          transform: scale(1.2);
+          color: #000000; 
+        }
+    100% { 
+           transform: scale(1);
+           color: #000000; 
+         }
+}
+
 @media only screen and (max-width: 800px) {
 
     /* 
@@ -120,5 +153,13 @@
     @keyframes menuOut {
         from { transform: translateX(30px); }
         to { transform: translateX(-400px); }
+    }
+
+    /*
+    Menu and search buttons
+    */
+    @keyframes buttonsIn {
+        from { transform: translateY(-40px); }
+        to { transform: translateY(30px); }
     }
 }
