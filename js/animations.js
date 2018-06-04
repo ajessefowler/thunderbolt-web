@@ -27,20 +27,20 @@
 	document.getElementById('rightswitch').addEventListener('click', function() {
 		if (rightSwitchPos === 0) {
 			rightSwitchPos = 1;
-			$('#rightslider').velocity({ left: 13 }, { duration: 150, easing: 'spring' });
+			document.getElementById('rightslider').style.animation = 'settingsRight .2s ease forwards';
 		} else {
 			rightSwitchPos = 0;
-			$('#rightslider').velocity({ left: 0 }, { duration: 150, easing: 'spring' });
+			document.getElementById('rightslider').style.animation = 'settingsLeft .2s ease forwards';
 		}
 	});
 
 	document.getElementById('leftswitch').addEventListener('click', function() {
 		if (leftSwitchPos === 0) {
 			leftSwitchPos = 1;
-			$('#leftslider').velocity({ left: 13 }, { duration: 150, easing: 'spring' });
+			document.getElementById('leftslider').style.animation = 'settingsRight .2s ease forwards';
 		} else {
 			leftSwitchPos = 0;
-			$('#leftslider').velocity({ left: 0 }, { duration: 150, easing: 'spring' });
+			document.getElementById('leftslider').style.animation = 'settingsLeft .2s ease forwards';
 		}
 	});
 
@@ -78,10 +78,13 @@
 })();
 
 function addLanding() {
+	document.getElementById('splashexit').style.animation = 'splashFadeIn .6s ease forwards';
 	document.getElementById('splashtexthead').style.animation = 'splashFadeIn 1s ease .2s forwards';
 	document.getElementById('splashtextsub').style.animation = 'splashFadeIn 1s ease 1.2s forwards';
 	document.getElementById('splashlocbutton').style.animation = 'splashButtonsIn .4s ease 2.5s forwards';
 	document.getElementById('splashlocate').style.animation = 'splashButtonsIn .4s ease 2.6s forwards';
+	document.getElementById('splashlocbutton').addEventListener('click', findLocation);
+	document.getElementById('splashexit').addEventListener('click', removeLanding);
 }
 
 // Hides splashscreen and re-enables scrolling
@@ -107,7 +110,7 @@ function addContent() {
 	document.getElementById('daily').style.animation = 'contentIn .5s ease .9s forwards';
 	document.getElementById('radar').style.animation = 'contentIn .5s ease 1.1s forwards';
 	setTimeout(function(){ 
-		$('body').css('overflow','auto'); 
+		document.body.style.overflow = 'auto'; 
 		resizeHourly();
 	}, 1600);
 }

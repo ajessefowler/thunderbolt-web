@@ -107,6 +107,17 @@
     to { transform: rotate(-180deg); }
 }
 
+/* Slide settings toggles */
+@keyframes settingsRight {
+    from { left: 0; }
+    to { left: 13px; }
+}
+
+@keyframes settingsLeft {
+    from { left: 13px; }
+    to { left: 0; }
+}
+
 /*
     Favorite click
 */

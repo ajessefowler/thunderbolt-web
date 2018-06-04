@@ -2,9 +2,8 @@
     Retrieves weather data for selected location and updates page
 */
 
-/* 
-	Find the weather, given the user's latitude and longitude.
-*/
+
+// Find the weather, given the user's latitude and longitude.
 function getWeather(lat, long, isFavoriteLocation = false) {
 	const weatherKey = '014160f48f5c2882a6f60dcbeb59425e';
 	const weatherUrl = 'https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/' + weatherKey + '/' + lat + ',' + long;
@@ -26,18 +25,18 @@ function getWeather(lat, long, isFavoriteLocation = false) {
 				}
 
 				// Update HTML to reflect retrieved weather data
-				$('#temp').html(Math.round(data.currently.temperature) + '°F');
-				$('#condition').html(data.minutely.summary);
-				$('#wind').html('<strong>Wind:</strong> ' + Math.round(data.currently.windSpeed) + ' mph ' + getWindDirection(data.currently.windBearing));
-				$('#humidity').html('<strong>Humidity:</strong> ' + Math.round(data.currently.humidity * 100) + '%');
-				$('#dewpoint').html('<strong>Dew Point:</strong> ' + Math.round(data.currently.dewPoint) + '°');
-				$('#pressure').html('<strong>Pressure:</strong> ' + Math.round(data.currently.pressure) + ' mb');
-				$('#feelslike').html('<strong>Feels Like:</strong> ' + Math.round(data.currently.apparentTemperature) + '°');
-				$('#sunrise').html('<strong>Sunrise:</strong> ' + getTime(data.daily.data[0].sunriseTime));
-				$('#sunset').html('<strong>Sunset:</strong> ' + getTime(data.daily.data[0].sunsetTime));
-				$('#chanceprecip').html('<strong>Precipitation:</strong> ' + Math.round(data.currently.precipProbability * 100) + '%');
-				$('#hourlysummary').html(data.hourly.summary);
-				$('#dailysummary').html(data.daily.summary);
+				document.getElementById('temp').innerHTML = (Math.round(data.currently.temperature) + '°F');
+				document.getElementById('condition').innerHTML = data.minutely.summary;
+				document.getElementById('wind').innerHTML = ('<strong>Wind:</strong> ' + Math.round(data.currently.windSpeed) + ' mph ' + getWindDirection(data.currently.windBearing));
+				document.getElementById('humidity').innerHTML = ('<strong>Humidity:</strong> ' + Math.round(data.currently.humidity * 100) + '%');
+				document.getElementById('dewpoint').innerHTML = ('<strong>Dew Point:</strong> ' + Math.round(data.currently.dewPoint) + '°');
+				document.getElementById('pressure').innerHTML = ('<strong>Pressure:</strong> ' + Math.round(data.currently.pressure) + ' mb');
+				document.getElementById('feelslike').innerHTML = ('<strong>Feels Like:</strong> ' + Math.round(data.currently.apparentTemperature) + '°');
+				document.getElementById('sunrise').innerHTML = ('<strong>Sunrise:</strong> ' + getTime(data.daily.data[0].sunriseTime));
+				document.getElementById('sunset').innerHTML = ('<strong>Sunset:</strong> ' + getTime(data.daily.data[0].sunsetTime));
+				document.getElementById('chanceprecip').innerHTML = ('<strong>Precipitation:</strong> ' + Math.round(data.currently.precipProbability * 100) + '%');
+				document.getElementById('hourlysummary').innerHTML = data.hourly.summary;
+				document.getElementById('dailysummary').innerHTML = data.daily.summary;
 
 				// Resize the hourly content based on the height of the hourly summary
 				resizeHourly();
