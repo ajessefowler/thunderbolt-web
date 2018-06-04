@@ -7,9 +7,10 @@ document.addEventListener('DOMContentLoaded', init);
 // If a location has been favorited, load the data for that location, otherwise display the landing page
 function init() {
 	if (favoriteLocations.length !== 0) {
+		const location = new Location(favoriteLocations[0].city, favoriteLocations[0].state, favoriteLocations[0].lat, favoriteLocations[0].long, true);
 		document.getElementById('splashsearchdiv').parentNode.removeChild(document.getElementById('splashsearchdiv'));
 		updateLocalStorage();
-		updatePage(favoriteLocations[0]);
+		updatePage(location);
 	} else {
 		addLanding();
 	}
@@ -95,6 +96,8 @@ function searchLocation() {
 function updatePage(currentLocation) {
 	const faveIcon = document.getElementById('faveicon');
 
+	removeLanding();
+
 	// Initialize favorite button
 	if (isFavorited(currentLocation) === false) {
 		faveIcon.style.animation = 'unfavorite .2s linear forwards';
@@ -106,8 +109,6 @@ function updatePage(currentLocation) {
 		currentLocation.favorite();
 	})
 
-	// Update HTML
-	removeLanding();
 	document.getElementById('currentheader').innerHTML = currentLocation.city + ', ' + currentLocation.state;
 	getWeather(currentLocation.lat, currentLocation.long);
 	initMap({ lat: currentLocation.lat, lng: currentLocation.long });
@@ -118,14 +119,12 @@ function updatePage(currentLocation) {
 function isFavorited(location) {
 	let i;
 	let isFavorited = false;
-	const favorites = JSON.parse(localStorage.getItem('favorites'));
+	const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 	
-	if (favorites) {
-		for (i = 0; i < favorites.length; ++i) {
-			if (location.city === favorites[i].city && location.state === favorites[i].state) {
-				isFavorited = i;
-				break;
-			}
+	for (i = 0; i < favorites.length; ++i) {
+		if (location.city === favorites[i].city && location.state === favorites[i].state) {
+			isFavorited = i;
+			break;
 		}
 	}
 
