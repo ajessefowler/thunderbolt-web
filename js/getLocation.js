@@ -120,10 +120,12 @@ function isFavorited(location) {
 	let isFavorited = false;
 	const favorites = JSON.parse(localStorage.getItem('favorites'));
 	
-	for (i = 0; i < favorites.length; ++i) {
-		if (location.city === favorites[i].city && location.state === favorites[i].state) {
-			isFavorited = i;
-			break;
+	if (favorites) {
+		for (i = 0; i < favorites.length; ++i) {
+			if (location.city === favorites[i].city && location.state === favorites[i].state) {
+				isFavorited = i;
+				break;
+			}
 		}
 	}
 
