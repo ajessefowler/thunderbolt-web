@@ -46,13 +46,13 @@
     Shade for menu background 
 */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 0.93; }
+    from { background-color: rgba(0, 0, 0, 0); }
+    to { background-color: rgba(0, 0, 0, 0.9); }
 }
 
 @keyframes fadeOut {
-    from { opacity: 0.93; }
-    to { opacity: 0; }
+    from { background-color: rgba(0, 0, 0, 0.9); }
+    to { background-color: rgba(0, 0, 0, 0); }
 }
 
 /* 
@@ -60,11 +60,11 @@
 */
 @keyframes menuIn {
     from { transform: translateX(-400px); }
-    to { transform: translateX(87px); }
+    to { transform: translateX(100px); }
 }
 
 @keyframes menuOut {
-    from { transform: translateX(87px); }
+    from { transform: translateX(100px); }
     to { transform: translateX(-400px); }
 }
 
@@ -138,6 +138,14 @@
            transform: scale(1) scaleY(1.1);
            color: #000000; 
          }
+}
+
+/*
+    Remove favorite from menu
+*/
+@keyframes removeFavorite {
+    from { transform: translateX(0); }
+    to { transform: translateX(-600px); }
 }
 
 @media only screen and (max-width: 800px) {

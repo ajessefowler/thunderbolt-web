@@ -2,17 +2,18 @@
 	Obtains user's location either automatically or manually, then retrieves weather data based on location
 */
 
-// Automatically obtain the user's location, if supported
+
+// Find the user's current location, if supported
 function findLocation() {
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(findCoords, locationError);
+		navigator.geolocation.getCurrentPosition(resolveAddress, locationError);
 	} else {
 		alert('Your browser does not support location. Please enter your location.');
 	}
 }
 
 // Find weather based on user's determined coordinates and update HTML
-function findCoords(position) {
+function resolveAddress(position) {
 	const lat = position.coords.latitude;
 	const long = position.coords.longitude;
 	const key = 'AIzaSyC2Mcoh2tL1KeJUbmn420w0lPvPclJJvMQ';
@@ -27,9 +28,7 @@ function findCoords(position) {
 			const city = location.results[0].address_components[3].long_name;
 			const state = location.results[0].address_components[5].long_name;
 			const currentLocation = new Location(city, state, lat, long);
-
-			updatePageLocation(currentLocation);
-			removeSplash();
+			updatePage(currentLocation);
 		} else {
 			console.log('Data error.');
 		}
@@ -54,14 +53,8 @@ function searchLocation() {
 	const autocomplete = new google.maps.places.Autocomplete(document.querySelector('#autocomplete'), countryRestriction);
 	google.maps.event.addListener(autocomplete, 'place_changed', function() {
 		document.getElementById('autocomplete').blur();
-		const place = this.getPlace();
-		const lat = place.geometry.location.lat();
-		const long = place.geometry.location.lng();
-		const city = place.address_components[3].long_name;
-		const state = place.address_components[5].long_name;
-		const currentLocation = new Location(city, state, lat, long);
-
-		updatePageLocation(currentLocation);
+		const currentLocation = resolveLocation(autocomplete);
+		updatePage(currentLocation);
 	});
 
 	// Autocomplete and listener for splashscreen search bar
@@ -70,30 +63,54 @@ function searchLocation() {
 		document.getElementById('splashsearch').blur();
 	});
 
-	// Finds weather at location in search box on click of search button
 	document.getElementById('splashsearchbutton').addEventListener('click', function() {
-		const splashPlace = splashcomplete.getPlace();
-		const splashLat = splashPlace.geometry.location.lat();
-		const splashLong = splashPlace.geometry.location.lng();
-		const splashCity = splashPlace.address_components[3].long_name;
-		const splashState = splashPlace.address_components[5].long_name;
-		const currentLocation = new Location(splashCity, splashState, splashLat, splashLong);
-
-		updatePageLocation(currentLocation);
-		removeSplash();
+		const currentLocation = resolveLocation(splashcomplete);
+		updatePage(currentLocation);
 	});
+
+	function resolveLocation(element) {
+		const place = element.getPlace();
+		const lat = place.geometry.location.lat();
+		const long = place.geometry.location.lng();
+		const city = place.address_components[3].long_name;
+		const state = place.address_components[5].long_name;
+		const location = new Location(city, state, lat, long);
+		return location;
+	}
 }
 
 // Update the page to reflect the new location
-function updatePageLocation(currentLocation) {
+function updatePage(currentLocation) {
 	const faveIcon = document.getElementById('faveicon');
+
+	// Initialize favorite button
+	if (!isFavorited(currentLocation)) {
+		faveIcon.style.animation = 'unfavorite .2s linear forwards';
+	} else {
+		faveIcon.style.animation = 'favorite .2s linear 2 forwards';
+	}
 	faveIcon.style.display = 'block';
-	faveIcon.style.color = '#000000';
 	faveIcon.onclick = () => { currentLocation.favorite(); };
 
+	// Update HTML
+	removeSplash();
 	document.getElementById('currentheader').innerHTML = currentLocation.city + ', ' + currentLocation.state;
 	getWeather(currentLocation.lat, currentLocation.long);
 	initMap({ lat: currentLocation.lat, lng: currentLocation.long });
+
+	function isFavorited(location) {
+		let isFavorited = false;
+		const favorites = JSON.parse(localStorage.getItem('favorites'));
+		
+		for (const favorite of favorites) {
+			if (location.city === favorite.city && location.state === favorite.state) {
+				isFavorited = true;
+				break;
+			}
+		}
+
+		return isFavorited;
+	}
 }
 
 // Create a Google Maps baselayer with a radar layer on top

@@ -20,9 +20,9 @@ function getWeather(lat, long, isFavoriteLocation = false) {
 
 				// Change font size of hourly summary if content is too long
 				if (data.hourly.summary.length > 110) {
-					document.getElementById('hourlysummary').style.fontSize = '14pt';
+					document.getElementById('hourlysummary').style.fontSize = '13pt';
 				} else if (data.hourly.summary.length > 70) {
-					document.getElementById('hourlysummary').style.fontSize = '15pt';
+					document.getElementById('hourlysummary').style.fontSize = '14pt';
 				}
 
 				// Update HTML to reflect retrieved weather data

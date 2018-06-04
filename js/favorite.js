@@ -2,17 +2,16 @@
     Initializes favorite locations to those saved in LocalStorage, or an empty array if no favorites exist.
 */
 
-//var favoriteLocations = JSON.parse(localStorage.getItem('favorites')) || [];
-var favoriteLocations = [];
+var favoriteLocations = JSON.parse(localStorage.getItem('favorites')) || [];
 
 // Creates new Location object with name and coordinates. Also maintains whether Location is favorited.
 class Location {
-    constructor(city, state, lat, long) {
+    constructor(city, state, lat, long, isFavorited = false) {
 	    this.city = city;
 	    this.state = state;
 	    this.lat = lat;
 	    this.long = long;
-	    this.isFavorited = false;
+	    this.isFavorited = isFavorited;
     }
 
     favorite() {
@@ -22,7 +21,6 @@ class Location {
                 this.isFavorited = true;
                 document.getElementById('faveicon').style.animation = 'favorite .2s linear 2 forwards';
                 favoriteLocations.push(this);
-                console.log(favoriteLocations);
              } else {
                 this.isFavorited = false;
                 document.getElementById('faveicon').style.animation = 'unfavorite .2s linear forwards';
@@ -56,20 +54,26 @@ function updateLocalStorage() {
 }
 
 function updateFavoritesMenu() {
-	let div;
-	let favorites = JSON.parse(localStorage.getItem('favorites'));
+    let div;
+    let icon;
+    let favorites = JSON.parse(localStorage.getItem('favorites'));
 
 	// Add new favorites list to favorites menu
 	for (let i = 0; i < favorites.length; ++i) {
+        const location = new Location(favorites[i].city, favorites[i].state, favorites[i].lat, favorites[i].long, favorites[i].isFavorited);
 		div = document.createElement('div');
 		icon = document.createElement('i');
 		div.className = 'favorite';
 		icon.className = 'material-icons removefave';
 		div.setAttribute('id', ('favorite' + i));
 		icon.setAttribute('id', ('removebtn' + i));
-        div.innerHTML = '<p>' + favorites[i].city + ', ' + favorites[i].state + '</p>';
+        div.innerHTML = '<h2>' + location.city + ', ' + location.state + '</h2>';
         icon.innerHTML = 'delete_outline';
 		document.getElementById('favorites').appendChild(div);
-		document.getElementById('favorite' + i).appendChild(icon);
+        document.getElementById('favorite' + i).appendChild(icon);
+        document.getElementById('removebtn' + i).addEventListener('click', function() {
+            this.parentElement.style.animation = 'removeFavorite .5s ease forwards';
+            setTimeout(function() { location.favorite(); }, 400);
+        });
 	}
 }

@@ -10,6 +10,19 @@
 	let closeDiv = document.createElement('div');
 	let searchDiv = document.createElement('div');
 
+	if (favoriteLocations.length !== 0) {
+		document.getElementById('splashsearchdiv').parentNode.removeChild(document.getElementById('splashsearchdiv'));
+		updateLocalStorage();
+        updateFavoritesMenu();
+		getWeather(favoriteLocations[0].lat, favoriteLocations[0].long);
+		addContent();
+	} else {
+		document.getElementById('splashtexthead').style.animation = 'splashFadeIn 1s ease .2s forwards';
+		document.getElementById('splashtextsub').style.animation = 'splashFadeIn 1s ease 1.2s forwards';
+		document.getElementById('splashlocbutton').style.animation = 'splashButtonsIn .4s ease 2.5s forwards';
+		document.getElementById('splashlocate').style.animation = 'splashButtonsIn .4s ease 2.6s forwards';
+	}
+
 	// Slides settings menu in and out
 	document.getElementById('settingsbtn').addEventListener('click', function() {
 		if (!settingsOpen) {
@@ -51,19 +64,8 @@
 		document.getElementById('menushade').style.animation = 'fadeIn .5s ease forwards';
 	});
 
-	document.getElementById('closemenu').addEventListener('click', function() {
-		document.getElementById('menu').style.animation = 'menuOut .4s ease forwards';
-		document.getElementById('menushade').style.animation = 'fadeOut .5s ease forwards';
-		setTimeout(function(){ document.getElementById('menushade').style.display = 'none'; }, 500);
-	});
-
-	// Create function to DRY these
-
-	document.getElementById('menushade').addEventListener('click', function() {
-		document.getElementById('menu').style.animation = 'menuOut .4s ease forwards';
-		document.getElementById('menushade').style.animation = 'fadeOut .5s ease forwards';
-		setTimeout(function(){ document.getElementById('menushade').style.display = 'none'; }, 500);
-	})
+	document.getElementById('closemenu').addEventListener('click', closeMenu);
+	document.getElementById('menushade').addEventListener('click', closeMenu);
 
 	// Slide search bar in and out
 	document.getElementById('searchbutton').addEventListener('click', function() {
@@ -78,15 +80,19 @@
 		}
 	});
 
+	function closeMenu() {
+		document.getElementById('menu').style.animation = 'menuOut .4s ease forwards';
+		document.getElementById('menushade').style.animation = 'fadeOut .5s ease forwards';
+		setTimeout(function(){ document.getElementById('menushade').style.display = 'none'; }, 500);
+	}
+
 	// Resizes hourly content whenever window is resized to maintain proper look
 	window.addEventListener('resize', resizeHourly);
 })();
 
 // Hides splashscreen and re-enables scrolling
 function removeSplash() {
-	let splashRemoved = false;
-
-	if (!splashRemoved) {
+	if (document.getElementById('splashsearchdiv')) {
 		setTimeout(function() {
 			document.getElementById('splashsearchdiv').parentNode.removeChild(document.getElementById('splashsearchdiv'));
 			addContent();
@@ -96,7 +102,6 @@ function removeSplash() {
 		document.getElementById('splashexit').style.animation = 'splashFadeOut .6s ease forwards';
 		document.getElementById('splashtexthead').style.animation = 'splashFadeOut .6s ease forwards';
 		document.getElementById('splashtextsub').style.animation = 'splashFadeOut .6s ease forwards';
-		splashRemoved = true;
 	}
 }
 
@@ -107,7 +112,10 @@ function addContent() {
 	document.getElementById('hourly').style.animation = 'contentIn .5s ease .7s forwards';
 	document.getElementById('daily').style.animation = 'contentIn .5s ease .9s forwards';
 	document.getElementById('radar').style.animation = 'contentIn .5s ease 1.1s forwards';
-	setTimeout(function(){ $('body').css('overflow','auto'); }, 1600);
+	setTimeout(function(){ 
+		$('body').css('overflow','auto'); 
+		resizeHourly();
+	}, 1600);
 }
 
 // Calculates height of hourly content based on hourly summary
