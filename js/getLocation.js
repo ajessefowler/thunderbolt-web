@@ -2,6 +2,21 @@
 	Obtains user's location either automatically or manually, then retrieves weather data based on location
 */
 
+document.addEventListener('DOMContentLoaded', init);
+
+// If a location has been favorited, load the data for that location, otherwise display the landing page
+function init() {
+	if (favoriteLocations.length !== 0) {
+		document.getElementById('splashsearchdiv').parentNode.removeChild(document.getElementById('splashsearchdiv'));
+		updateLocalStorage();
+		getWeather(favoriteLocations[0].lat, favoriteLocations[0].long);
+		addContent();
+	} else {
+		addLanding();
+	}
+
+	document.getElementById('splashlocbutton').addEventListener('click', findLocation);
+}
 
 // Find the user's current location, if supported
 function findLocation() {
@@ -93,24 +108,25 @@ function updatePage(currentLocation) {
 	faveIcon.onclick = () => { currentLocation.favorite(); };
 
 	// Update HTML
-	removeSplash();
+	removeLanding();
 	document.getElementById('currentheader').innerHTML = currentLocation.city + ', ' + currentLocation.state;
 	getWeather(currentLocation.lat, currentLocation.long);
 	initMap({ lat: currentLocation.lat, lng: currentLocation.long });
+}
 
-	function isFavorited(location) {
-		let isFavorited = false;
-		const favorites = JSON.parse(localStorage.getItem('favorites'));
-		
-		for (const favorite of favorites) {
-			if (location.city === favorite.city && location.state === favorite.state) {
-				isFavorited = true;
-				break;
-			}
+// Determines whether a given Location object is favorited, returns the boolean value
+function isFavorited(location) {
+	let isFavorited = false;
+	const favorites = JSON.parse(localStorage.getItem('favorites'));
+	
+	for (const favorite of favorites) {
+		if (location.city === favorite.city && location.state === favorite.state) {
+			isFavorited = true;
+			break;
 		}
-
-		return isFavorited;
 	}
+
+	return isFavorited;
 }
 
 // Create a Google Maps baselayer with a radar layer on top

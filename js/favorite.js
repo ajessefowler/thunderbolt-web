@@ -33,8 +33,6 @@ class Location {
              }
     
             updateLocalStorage();
-            updateFavoritesMenu();
-             
         } else {
             alert('Your browser does not support favorite locations.');
         }
@@ -50,7 +48,8 @@ function updateLocalStorage() {
 		favoritesNode.removeChild(favoritesNode.lastChild);
 	}
 
-	localStorage.setItem('favorites', JSON.stringify(favoriteLocations));
+    localStorage.setItem('favorites', JSON.stringify(favoriteLocations));
+    updateFavoritesMenu();
 }
 
 function updateFavoritesMenu() {

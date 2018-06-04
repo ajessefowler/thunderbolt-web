@@ -10,19 +10,6 @@
 	let closeDiv = document.createElement('div');
 	let searchDiv = document.createElement('div');
 
-	if (favoriteLocations.length !== 0) {
-		document.getElementById('splashsearchdiv').parentNode.removeChild(document.getElementById('splashsearchdiv'));
-		updateLocalStorage();
-        updateFavoritesMenu();
-		getWeather(favoriteLocations[0].lat, favoriteLocations[0].long);
-		addContent();
-	} else {
-		document.getElementById('splashtexthead').style.animation = 'splashFadeIn 1s ease .2s forwards';
-		document.getElementById('splashtextsub').style.animation = 'splashFadeIn 1s ease 1.2s forwards';
-		document.getElementById('splashlocbutton').style.animation = 'splashButtonsIn .4s ease 2.5s forwards';
-		document.getElementById('splashlocate').style.animation = 'splashButtonsIn .4s ease 2.6s forwards';
-	}
-
 	// Slides settings menu in and out
 	document.getElementById('settingsbtn').addEventListener('click', function() {
 		if (!settingsOpen) {
@@ -90,8 +77,15 @@
 	window.addEventListener('resize', resizeHourly);
 })();
 
+function addLanding() {
+	document.getElementById('splashtexthead').style.animation = 'splashFadeIn 1s ease .2s forwards';
+	document.getElementById('splashtextsub').style.animation = 'splashFadeIn 1s ease 1.2s forwards';
+	document.getElementById('splashlocbutton').style.animation = 'splashButtonsIn .4s ease 2.5s forwards';
+	document.getElementById('splashlocate').style.animation = 'splashButtonsIn .4s ease 2.6s forwards';
+}
+
 // Hides splashscreen and re-enables scrolling
-function removeSplash() {
+function removeLanding() {
 	if (document.getElementById('splashsearchdiv')) {
 		setTimeout(function() {
 			document.getElementById('splashsearchdiv').parentNode.removeChild(document.getElementById('splashsearchdiv'));
